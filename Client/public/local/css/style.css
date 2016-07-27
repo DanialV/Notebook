@@ -1,0 +1,17 @@
+
+@font-face {
+    font-family: 'DroidNaskh';
+    src: url("../local/fonts/DroidArabicNaskh.eot");
+    src: url("../local/fonts/DroidArabicNaskh.eot?#iefix") format("embedded-opentype"), url("../local/fonts/DroidArabicNaskh.woff") format("woff"), url("../local/fonts/DroidArabicNaskh.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'DroidNaskh';
+    src: url("../local/fonts/DroidArabicNaskh.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+body{
+    font-family: "DroidNaskh";
+}
