@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-
+var mongoose = require("mongoose");
 var app = require('../app');
 var debug = require('debug')('118:server');
 var http = require('http');
@@ -88,3 +88,16 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+// mongo connect to
+
+mongoose.connect('mongodb://localhost/' + global.init.db_name);
+var db = mongoose.connection;
+
+db.on('error', function (err) {
+  console.log('Error : Mongo connection error'.red);
+//    console.log(err);
+});
+db.once('open', function () {
+  console.log("connected to mongodb");
+});
