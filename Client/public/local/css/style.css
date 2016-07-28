@@ -1,17 +1,66 @@
 
 @font-face {
     font-family: 'DroidNaskh';
-    src: url("../local/fonts/DroidArabicNaskh.eot");
-    src: url("../local/fonts/DroidArabicNaskh.eot?#iefix") format("embedded-opentype"), url("../local/fonts/DroidArabicNaskh.woff") format("woff"), url("../local/fonts/DroidArabicNaskh.ttf") format("truetype");
+    src: url("../fonts/BYekan-.eot");
+    src: url("../fonts/BYekan-.eot?#iefix") format("embedded-opentype"), url("../fonts/BYekan-.woff") format("woff"), url("../fonts/BYekan-.ttf") format("truetype");
     font-weight: 400;
     font-style: normal;
 }
 @font-face {
     font-family: 'DroidNaskh';
-    src: url("../local/fonts/DroidArabicNaskh.ttf") format("truetype");
+    src: url("../fonts/BYekan-.ttf") format("truetype");
     font-weight: 700;
     font-style: normal;
 }
 body{
     font-family: "DroidNaskh";
+}
+
+
+
+.fade-handel{
+    -webkit-animation: fadein .5s; /* Safari and Chrome */
+    -moz-animation: fadein .5s; /* Firefox */
+    -ms-animation: fadein .5s; /* Internet Explorer */
+    -o-animation: fadein .5s; /* Opera */
+    animation: fadein .5s;
+}
+.list_hidden_fade{
+    -webkit-animation: fadein 1s; /* Safari and Chrome */
+    -moz-animation: fadein 1s; /* Firefox */
+    -ms-animation: fadein 1s; /* Internet Explorer */
+    -o-animation: fadein 1s; /* Opera */
+    animation: fadein 1s;
+}
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+/* Firefox */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+/* Safari and Chrome */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+/* Opera */
+@-o-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

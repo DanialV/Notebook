@@ -34,8 +34,29 @@ var core = (function(){
         });
         return o;
     };
+    function core_function(){
+        load_login();
+    }
+    function load_login() {
+        $("#sign_in").click(function(a){
+            $.ajax({
+                url:'/login',
+                type: 'GET',
+                success : function(login_html){
+                    $("#content_body").addClass("fade-handel");
+                    $("#content_body").html(login_html);
+                    $("#content_header").addClass("fade-handel");
+                    $("#content_header").html("ورود");
+                }
+
+            });
+        });
+
+    }
     return{
-        _load_login: load_everything
+        _core: core_function
     };
 })();
-pc3._load_login();
+$(document).ready(function(){
+    core._core();
+});

@@ -3,19 +3,19 @@
  */
 // catch 404 and forward to error handler
 
-
 module.exports = function(app){
     app.route('/').get(function(req,res){
         if(req.session.role == 'undefined')
-            res.send('index',{data : {version : global.init.version , role : 0}});
+            res.render('index',{data : {version : global.init.version , role : 0}});
         else{
-            res.send('index',{data : {
+            res.render('index',{data : {
                 version : global.init.version ,
                 role : req.session.role,
                 username : req.session.username
             }});
         }
     });
+    require('./dynamic_routes')(app);
     app.use(function(req, res, next) {
         var err = new Error('Not Found');
         err.status = 404;

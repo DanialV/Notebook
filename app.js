@@ -7,7 +7,10 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var session = require('cookie-session');
 var bodyParser = require('body-parser');
+var csrf = require('csurf');
+
 
 var routes = require('./Server/routes/index');
 var users = require('./Server/routes/users');
@@ -25,6 +28,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'Client/public')));
-
+app.use(session({
+    name: 'scoreboard_session',
+    secret: 'kytddkhovoqyfjgfhch'
+}));
+app.use(csrf({
+    cookie: true,
+    key : '_CSURF_TOKEN'
+}));
 require('./Server/routes/root')(app);
 module.exports = app;
