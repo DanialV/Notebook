@@ -15,7 +15,9 @@
 body{
     font-family: "DroidNaskh";
 }
-
+h2,h3,h1,h5,h4{
+    font-family: "DroidNaskh";
+}
 
 
 .fade-handel{

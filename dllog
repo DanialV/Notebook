@@ -1,0 +1,6 @@
+2016-07-28 14:01:43.448742 [ERROR] [AbstractCommand.cc:350] CUID#6 - Download aborted. URI=http://sepehr.sadjad.ac.ir/link/41502_GraphLab_Create-2.1-py2.7.tar.gz#md5=003c721eea01151ed7298899f3c7f299
+Exception: [AbstractCommand.cc:350] errorCode=3 URI=http://sepehr.sadjad.ac.ir/link/41502_GraphLab_Create-2.1-py2.7.tar.gz
+  -> [HttpSkipResponseCommand.cc:215] errorCode=3 Resource not found
+2016-07-28 14:01:43.449139 [NOTICE] [RequestGroupMan.cc:393] Download GID#082b5ac168a39075 not complete: 
+2016-07-28 14:10:12.943971 [NOTICE] [RequestGroup.cc:1161] Download complete: /home/danial/Aria2/pycharm-professional-2016.2.tar.gz
+2016-07-28 14:12:14.948225 [NOTICE] [RequestGroup.cc:1161] Download complete: /home/danial/Aria2/Anaconda3-4.1.1-Linux-x86.sh

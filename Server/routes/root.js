@@ -4,15 +4,33 @@
 // catch 404 and forward to error handler
 
 module.exports = function(app){
+    app.route('/*').get(function(req,res,next){
+        //here is very important spot
+        next();
+    });
     app.route('/').get(function(req,res){
-        if(req.session.role == 'undefined')
-            res.render('index',{data : {version : global.init.version , role : 0}});
+        if(req.session.role == 'undefined'){
+            if(req.xhr){
+                res.render('index_ajax',{data : {version : global.init.version , role : 0}});
+
+            }
+            else res.render('index',{data : {version : global.init.version , role : 0}});
+        }
         else{
-            res.render('index',{data : {
-                version : global.init.version ,
-                role : req.session.role,
-                username : req.session.username
-            }});
+            if(req.xhr){
+                res.render('index_ajax',{data : {
+                    version : global.init.version ,
+                    role : req.session.role,
+                    username : req.session.username
+                }});
+            }
+            else{
+                res.render('index',{data : {
+                    version : global.init.version ,
+                    role : req.session.role,
+                    username : req.session.username
+                }});
+            }
         }
     });
     require('./dynamic_routes')(app);

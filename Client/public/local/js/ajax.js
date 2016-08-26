@@ -35,23 +35,98 @@ var core = (function(){
         return o;
     };
     function core_function(){
+        main_page();
         load_login();
+        add_phone();
+
     }
     function load_login() {
         $("#sign_in").click(function(a){
+            $("#content_header").removeClass("fade-handel");
+            $("#content_body").removeClass("fade-handel");
             $.ajax({
                 url:'/login',
                 type: 'GET',
-                success : function(login_html){
+                success : function(html){
                     $("#content_body").addClass("fade-handel");
-                    $("#content_body").html(login_html);
+                    $("#content_body").html(html);
                     $("#content_header").addClass("fade-handel");
                     $("#content_header").html("ورود");
                 }
-
             });
         });
+    }
+    function main_page() {
+        $("#main_page").click(function(a){
+            $("#content_header").removeClass("fade-handel");
+            $("#content_body").removeClass("fade-handel");
+            $.ajax({
+                url:'/',
+                type: 'GET',
+                success : function(html){
+                    $("#content_body").addClass("fade-handel");
+                    $("#content_body").html(html);
+                    $("#content_header").addClass("fade-handel");
+                    $("#content_header").html("لیست تماس های ضروری");
+                }
+            });
+        });
+    }
+    function add_phone() {
+        $("#add_phone").click(function(a){
+            $("#content_header").removeClass("fade-handel");
+            $("#content_body").removeClass("fade-handel");
+            $.ajax({
+                url:'/add_phone',
+                type: 'GET',
+                success : function(html){
+                    $("#content_body").addClass("fade-handel");
+                    $("#content_body").html(html);
+                    $("#content_header").addClass("fade-handel");
+                    $("#content_header").html("اضافه کردن شماره تلفن");
+                    save_phone_data();
+                }
+            });
+        });
+    }
+    function save_phone_data() {
+        var all_request = null;
+        if(all_request != null)all_request.abort();
+        $("#add_phone_data").validate({
+            submitHandler: function() {
+                var _data = $("#add_phone_data").serializeObject();
+                all_request = $.ajax({
+                    url : '/add_phone',
+                    type : 'POST',
+                    data : _data,
+                    success : function(ok){
+                        if(ok == true){
+                            toastr.success("Waiting for admin approval",":)");
+                        }
+                        else toastr.error("اطلاعات صحیح نمی باشد.","خطا");
+                    },
+                    error : function(err){
+                        if(err.status == 500)
+                            toastr.error( "اشکال داخلی سرور","خطا");
+                    }
 
+                });
+            },
+            errorClass:"errors",
+            errorPlacement: function (error, element){
+                return false;
+            },
+            highlight: function(element, errorClass) {
+                $(element).parent().addClass("has-error");
+                $(element).fadeOut(function() {
+                    $(element).fadeIn();
+                });
+
+            },
+            unhighlight: function(element) { // <-- fires when element is valid
+                $(element).parent().removeClass("has-error").addClass('has-success');
+            }
+        });
     }
     return{
         _core: core_function

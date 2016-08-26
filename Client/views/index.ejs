@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <link rel='stylesheet' href='../dist/bootswatch/cerulean/bootstrap.min.css' />
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.2.0-rc2/css/bootstrap-rtl.css' />
-    <link href='../dist/toastr/toastr.min.css' rel='stylesheet' type='text/css'>
+    <link href='../local/css/toastr.min.css' rel='stylesheet' type='text/css'>
     <link href='../local/css/style.css' rel='stylesheet' type='text/css'>
   </head>
   <body>
@@ -17,13 +17,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">جستجوگر شماره تلفن 118</a>
+      <a id="main_page" class="navbar-brand" href="#">جستجوگر شماره تلفن 118</a>
 
     </div>
-
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
       <ul class="nav navbar-nav">
-        <li><a id="sign_in" href="#">ورود</a></li>
+        <li><a id="sign_in" href="#login">ورود</a></li>
         <li><a href="#">ثبت نام</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">دانشکده <span class="caret"></span></a>
@@ -38,25 +37,24 @@
           </ul>
         </li>
         <li ><a href="#">لیست مورد علاقه <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">اضافه کردن کاربر</a></li>
+        <li><a id="add_phone" href="#add_phone">اضافه کردن شماره تلفن</a></li>
       </ul>
     </div>
   </nav>
   <div class="container">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 id="content_header" class="panel-title">لیست شماره تلفن</h3>
+        <h3 id="content_header" class="panel-title">لیست تلفن های ضروری</h3>
       </div>
       <div id="content_body" class="panel-body">
-
       </div>
     </div>
   </div>
   </body>
   <script type="application/javascript" src="../dist/jquery/dist/jquery.min.js"> </script>
+  <script type="application/javascript" src="../dist/jquery-validation/dist/jquery.validate.min.js"> </script>
   <script type="application/javascript" src="../dist/bootstrap/dist/js/bootstrap.min.js"> </script>
-  <script type="application/javascript" src="../dist/toastr/toastr.min.js"> </script>
+  <script type="application/javascript" src="../local/js/toastr.min.js"> </script>
   <script type="application/javascript" src="../local/js/index.js"> </script>
   <script type="application/javascript" src="../local/js/ajax.js"> </script>
-
 </html>
