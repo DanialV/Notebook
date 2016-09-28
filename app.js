@@ -1,6 +1,6 @@
 global.init = require('./config.json');
 global.init.version = require('./package.json').version;
-
+global.init.db_name = '118';
 
 var express = require('express');
 var path = require('path');
@@ -12,8 +12,7 @@ var bodyParser = require('body-parser');
 var csrf = require('csurf');
 
 
-var routes = require('./Server/routes/index');
-var users = require('./Server/routes/users');
+
 
 var app = express();
 
@@ -29,13 +28,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'Client/public')));
 app.use(session({
-    name: 'scoreboard_session',
+    name: 'sadjad118_session',
     secret: 'kytddkhovoqyfjgfhch'
 }));
 app.use(csrf({
     cookie: true,
     key : '_CSURF_TOKEN'
 }));
+app.use(function(req, res, next) {
+    res.cookie('XSRF-TOKEN', req.csrfToken());
+    next();
+});
 require('./Server/utils/modules');
 require('./Server/routes/root')(app);
 module.exports = app;
+

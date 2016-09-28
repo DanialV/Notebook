@@ -90,7 +90,7 @@ function onListening() {
 }
 
 // mongo connect to
-
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/' + global.init.db_name);
 var db = mongoose.connection;
 

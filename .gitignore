@@ -2,3 +2,4 @@
 /node_modules/
 Client/public/dist/
 .gitignore
+gulpfile.js

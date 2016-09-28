@@ -12,12 +12,12 @@
     <div class="row">
         <div class="col-md-12">
             <div class="error-template">
-                <h1 style="font-size: 500%">404 </h1>
+                <h1 style="font-size: 500%"><%= data.status%></h1>
                 <div class="error-details">
-                    چنین صفحه ای وجود ندارد.!
+                    <%= data.message%>
                 </div>
                 <div class="error-actions">
-                    <a href="/" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+                    <a href="/#/" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
                         برگرد به صفحه اصلی </a><a href="http://www.jquery2dotnet.com" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> تماس با پشتیبانی</a>
                 </div>
             </div>

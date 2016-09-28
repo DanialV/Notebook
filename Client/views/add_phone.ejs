@@ -1,34 +1,22 @@
-<style>
-    .colorgraph {
-        height: 5px;
-        border-top: 0;
-        background: #c4e17f;
-        border-radius: 5px;
-        background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-        background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-        background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-        background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-    }
-</style>
-<div class="container">
+
+<div class="container" >
     <div class="row" style="margin-top:20px">
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-            <form id="add_phone_data" role="form" novalidate method="POST">
+            <form id="add_phone_data" role="form" method="POST" ng-submit="onsubmit()">
                 <fieldset>
                     <h2 >اضافه کردن شماره تلفن</h2>
                     <hr class="colorgraph">
                     <div class="form-group">
-                        <input type="hidden" name="_csrf" value="<%- csrfToken%>">
-                        <input type="text" name="name" id="name" class="form-control input-lg" placeholder="نام و نام خانوادگی / عنوان" required>
+                        <input type="text"  ng-model="user.name" class="form-control input-lg" placeholder="نام و نام خانوادگی / عنوان" required >
                     </div>
                     <div class="form-group">
-                        <input type="text" name="place" id="place" class="form-control input-lg" placeholder="" required>
+                        <input type="text"  ng-model="user.departmenet" class="form-control input-lg" placeholder="سمت" required>
                     </div>
                     <div class="form-group">
-                        <input type="number" name="number" id="number" class="form-control input-lg" placeholder="شماره تلفن" required>
+                        <input type="number" ng-model="user.phone_number" class="form-control input-lg" placeholder="شماره تلفن" required>
                     </div>
                     <div class="form-group">
-                        <input type="number" name="inside_number" id="inside_number" class="form-control input-lg" placeholder="شماره تلفن داخلی" required>
+                        <input type="number"  ng-model="user.inside_phone_number" class="form-control input-lg" placeholder="شماره تلفن داخلی" required>
                     </div>
                     <hr class="colorgraph">
                     <div class="row">

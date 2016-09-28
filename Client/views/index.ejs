@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl" xmlns="http://www.w3.org/1999/html">
+<html lang="fa" dir="rtl">
   <head>
     <title>جستجوگر شماره تلفن 118</title>
     <meta charset="UTF-8" />
     <link rel='stylesheet' href='../dist/bootswatch/cerulean/bootstrap.min.css' />
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.2.0-rc2/css/bootstrap-rtl.css' />
+      <link href='../local/css/bootstrap_rtl.css' rel='stylesheet' type='text/css'>
     <link href='../local/css/toastr.min.css' rel='stylesheet' type='text/css'>
     <link href='../local/css/style.css' rel='stylesheet' type='text/css'>
-  </head>
-  <body>
+    <script type="application/javascript" src="../dist/jquery/dist/jquery.min.js"> </script></head>
+  <body ng-app="sadjad118" ng-controller="body_controller">
   <nav class="navbar navbar-default">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
@@ -17,44 +17,113 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a id="main_page" class="navbar-brand" href="#">جستجوگر شماره تلفن 118</a>
-
+      <a id="main_page" class="navbar-brand" href="#/">جستجوگر شماره تلفن 118</a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
       <ul class="nav navbar-nav">
-        <li><a id="sign_in" href="#login">ورود</a></li>
-        <li><a href="#">ثبت نام</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">دانشکده <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">دانشکده کامپیوتر</a></li>
-            <li class="divider"></li>
-            <li><a href="#">دانشکده مهندسی برق و مهندسی پزشکی</a></li>
-            <li class="divider"></li>
-            <li><a href="#">دانشکده مهندسی صنایع و مهندسی مواد </a></li>
-            <li class="divider"></li>
-            <li><a href="#">دانشکده مهندسی عمران و معماری</a></li>
-          </ul>
-        </li>
-        <li ><a href="#">لیست مورد علاقه <span class="sr-only">(current)</span></a></li>
-        <li><a id="add_phone" href="#add_phone">اضافه کردن شماره تلفن</a></li>
+          <li class="dropdown">
+              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">دانشکده <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                  <li><a href="/#/">دانشکده کامپیوتر</a></li>
+                  <li class="divider"></li>
+                  <li><a href="/#">دانشکده مهندسی برق و مهندسی پزشکی</a></li>
+                  <li class="divider"></li>
+                  <li><a href="/#">دانشکده مهندسی صنایع و مهندسی مواد </a></li>
+                  <li class="divider"></li>
+                  <li><a href="/#">دانشکده مهندسی عمران و معماری</a></li>
+              </ul>
+          </li>
+          <%if(data.role == -1){%>
+          <li ng-class="loginActive"><a id="sign_in" href="#/login">ورود</a></li>
+          <% }%>
+        <li ng-class="enrollActive"><a href="#/enroll">ثبت نام</a></li>
+        <% if(data.role != -1){%>
+          <li ng-class="favoriteActive"><a  href="#/favorite">لیست مورد علاقه <span class="sr-only">(current)</span></a></li>
+          <%if(data.role == 1){%>
+          <li ng-class="addphoneActive"><a id="add_phone" href="#/add_phone">اضافه کردن شماره تلفن</a></li>
+          <%}%>
+        <%}%>
       </ul>
+        <%if(data.role != -1){%>
+        <ul class="nav navbar-nav navbar-left">
+            <li class="dropdown">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-user"></span> 
+                    <strong><%= data.name%></strong>
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right pull-left" style="background-color: #fff2f6;">
+                    <li>
+                        <div class="navbar-login">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p class="text-center">
+                                        <span class="glyphicon glyphicon-user icon-size"></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <div class="navbar-login navbar-login-session">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <a href="#/changeuser" class="btn btn-primary btn-block">تغییر اطلاعات کاربری</a>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p>
+                                        <a href="" ng-click="logout()" class="btn btn-danger btn-block">خروج</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <%}%>
     </div>
   </nav>
-  <div class="container">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 id="content_header" class="panel-title">لیست تلفن های ضروری</h3>
+      <div class="col-md-9">
+          <div class="panel panel-info">
+              <div class="panel-heading">
+                  <h3 id="content_header" class="panel-title" ng-class="header">{{Header}}</h3>
+              </div>
+              <div id="content_body" class="panel-body" ng-view ng-class="body">
+              </div>
+          </div>
       </div>
-      <div id="content_body" class="panel-body">
+      <div class="col-md-3">
+          <div class="panel panel-info">
+              <div class="panel-heading">
+                  <h3 id="content_header" class="panel-title">لینک های مفید</h3>
+              </div>
+              <div id="content_body" class="panel-body">
+                  <a href="{{stu_url}}"  target="_blank" class="btn btn-primary  btn-block">سیستم دانشجویی</a>
+                  <a href="{{sepehr_url}}" target="_blank" class="btn btn-info  btn-block">سیستم دانلود سپهر</a>
+                  <a href="{{pooya_url}}"  target="_blank" class="btn btn-warning  btn-block">سامانه پویا</a>
+              </div>
+          </div>
       </div>
-    </div>
-  </div>
+  <nav class="footer">
+      <div class="container">
+          <p class="pull-left">stiecky footer</p>
+
+      </div>
+  </nav>
   </body>
-  <script type="application/javascript" src="../dist/jquery/dist/jquery.min.js"> </script>
-  <script type="application/javascript" src="../dist/jquery-validation/dist/jquery.validate.min.js"> </script>
+
   <script type="application/javascript" src="../dist/bootstrap/dist/js/bootstrap.min.js"> </script>
+  <script type="application/javascript" src="../dist/angular/angular.min.js"> </script>
+  <script type="application/javascript" src="../dist/angular-route/angular-route.min.js"> </script>
+  <script type="application/javascript" src="../dist/angular-cookies/angular-cookies.min.js"> </script>
   <script type="application/javascript" src="../local/js/toastr.min.js"> </script>
-  <script type="application/javascript" src="../local/js/index.js"> </script>
-  <script type="application/javascript" src="../local/js/ajax.js"> </script>
+  <script type="application/javascript" src="../local/js/routes.js"> </script>
+  <script type="application/javascript" src="../local/js/controllers/login.js"> </script>
+  <script type="application/javascript" src="../local/js/controllers/root.js"> </script>
+  <script type="application/javascript" src="../local/js/controllers/add_phone.js"> </script>
+  <script type="application/javascript" src="../local/js/controllers/enroll.js"> </script>
+  <script type="application/javascript" src="../local/js/controllers/favorite.js"> </script>
+
 </html>
