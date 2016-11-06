@@ -21,30 +21,18 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
       <ul class="nav navbar-nav">
-          <li class="dropdown">
-              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">دانشکده <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                  <li><a href="/#/">دانشکده کامپیوتر</a></li>
-                  <li class="divider"></li>
-                  <li><a href="/#">دانشکده مهندسی برق و مهندسی پزشکی</a></li>
-                  <li class="divider"></li>
-                  <li><a href="/#">دانشکده مهندسی صنایع و مهندسی مواد </a></li>
-                  <li class="divider"></li>
-                  <li><a href="/#">دانشکده مهندسی عمران و معماری</a></li>
-              </ul>
-          </li>
-          <%if(data.role == -1){%>
+          <%if(data.role == 0){%>
           <li ng-class="loginActive"><a id="sign_in" href="#/login">ورود</a></li>
           <% }%>
         <li ng-class="enrollActive"><a href="#/enroll">ثبت نام</a></li>
-        <% if(data.role != -1){%>
+        <% if(data.role != 0){%>
           <li ng-class="favoriteActive"><a  href="#/favorite">لیست مورد علاقه <span class="sr-only">(current)</span></a></li>
-          <%if(data.role == 1){%>
+          <%if(data.role == 2){%>
           <li ng-class="addphoneActive"><a id="add_phone" href="#/add_phone">اضافه کردن شماره تلفن</a></li>
           <%}%>
         <%}%>
       </ul>
-        <%if(data.role != -1){%>
+        <%if(data.role != 0){%>
         <ul class="nav navbar-nav navbar-left">
             <li class="dropdown">
                 <a href="" class="dropdown-toggle" data-toggle="dropdown">
@@ -108,12 +96,18 @@
       </div>
   <nav class="footer">
       <div class="container">
-          <p class="pull-left">stiecky footer</p>
+          <div class="col-sm-6 ">
+              <p class="pull-right"><a href="{{computer_center}}"  target="_blank">مرکز کامپیوتر - دانشگاه صنعتی سجاد</a></p>
+
+          </div>
+          <div class="col-sm-6">
+              <p  class="pull-left">نسخه 0.0.1 </p>
+
+          </div>
 
       </div>
   </nav>
   </body>
-
   <script type="application/javascript" src="../dist/bootstrap/dist/js/bootstrap.min.js"> </script>
   <script type="application/javascript" src="../dist/angular/angular.min.js"> </script>
   <script type="application/javascript" src="../dist/angular-route/angular-route.min.js"> </script>
@@ -125,5 +119,4 @@
   <script type="application/javascript" src="../local/js/controllers/add_phone.js"> </script>
   <script type="application/javascript" src="../local/js/controllers/enroll.js"> </script>
   <script type="application/javascript" src="../local/js/controllers/favorite.js"> </script>
-
 </html>

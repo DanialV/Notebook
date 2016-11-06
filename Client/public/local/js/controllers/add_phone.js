@@ -38,7 +38,7 @@ _add_phone.config(function ($routeProvider) {
                         .error(function(err){
                             toastr.error( "اشکال داخلی سرور","خطا");
                         })
-                    
+
 
                 };
 

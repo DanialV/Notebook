@@ -4,9 +4,9 @@
 var db = require('mongo_schemas');
 module.exports.post = function(req,res){
     var _data = req.body;
-    var phoneNumber = _data.finder;
+    var id = _data.finder;
+    db.phones.findOne({_id : id},{},function(err,data){
 
-    db.phones.findOne({phone_number : phoneNumber},{},function(err,data){
         if(err){
             console.mongo(err);
             res.sendStatus(500);

@@ -5,8 +5,9 @@
 var error_handel = require("djs");
 var route_permission = {
     '/favorite':1,
+    '/delfavorite':1,
     '/deletenumber':2,
-    'editnumber' : 2,
+    '/editnumber' : 2,
     '/': 0,
     '/logout':1,
     '/main_content' : 0,
@@ -18,42 +19,65 @@ var route_permission = {
 };
 module.exports = function(app){
     app.route('/*').get(function(req,res,next){
-        if(typeof  req.session.role == 'undefined'){
-            if(route_permission.hasOwnProperty(req.url)){
-                if(route_permission[req.url] == 0){
-                    next();
-                }
-                else {
-                    error_handel.error_render(res,403, "اجازه مشاهده ی چنین صفحه ای رو ندارید!");
-                }
-
-            }
-            else{
-                error_handel.error_render(res,404, "چنین صفحه ای وجود ندارد!");
-            }
+      var permission = (typeof  req.session.role == 'undefined')?0:req.session.role;
+      if(route_permission.hasOwnProperty(req.url)){
+        //user permission
+        if(permission >= route_permission[req.url]){
+          next();
         }
         else{
-            if(route_permission.hasOwnProperty(req.url)){
-                if(route_permission[req.url]  <= req.session.role +1){
-                    next();
-                }
-                else{
-                    error_handel.error_render(res,403, "اجازه مشاهده ی چنین صفحه ای رو ندارید!");
-                }
-            }
-            else{
-                error_handel.error_render(res,404, "چنین صفحه ای وجود ندارد!");
-            }
-
+          console.log(req.url);
+          error_handel.error_render(res,403, "اجازه مشاهده ی چنین صفحه ای رو ندارید!");
         }
-
+      }
+      else{
+        // 404
+        error_handel.error_render(res,404, "چنین صفحه ای وجود ندارد!");
+      }
+    }).post(function(req,res,next){
+      var permission = (typeof  req.session.role == 'undefined')?0:req.session.role;
+      if(route_permission.hasOwnProperty(req.url)){
+        //user permission
+        if(permission >= route_permission[req.url]){
+          next();
+        }
+        else{
+          console.log(req.url);
+          error_handel.error_render(res,403, "اجازه مشاهده ی چنین صفحه ای رو ندارید!");
+        }
+      }
+      else{
+        // 404
+        error_handel.error_render(res,404, "چنین صفحه ای وجود ندارد!");
+      }
     });
     require('./dynamic_routes')(app);
+// error handlers
+
+// development error handler
+// will print stacktrace
+    if (app.get('env') === 'development') {
+        app.use(function(err, req, res, next) {
+            res.status(err.status || 500);
+            res.render('error', {
+                data : {
+                    status_code: (err.status || 500),
+                    status_massage: err.message,
+                    'version' : global.init.version
+                }
+            });
+        });
+    }
+
+// production error handler
+// no stacktraces leaked to user
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
         res.render('error', {
-            message: err.message,
-            error: {}
+            status_code: (err.status || 500),
+            status_massage: "Internal Server Error",
+            'version' : global.init.version
+
         });
     });
 };

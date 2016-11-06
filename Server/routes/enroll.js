@@ -50,7 +50,7 @@ module.exports.post = function(req,res){
     }
     function save_result(_email,callback){
         if(_email == "ok"){
-            data.role = 0;
+            data.role = 1;
             bcrypt.hash(data.password,10,function(err,hash){
                 if(err){
                     console.mongo(err);

@@ -2,19 +2,76 @@
  * Created by danial on 9/17/16.
  */
 var db  = require("mongo_schemas");
-var error_handel = require("djs");
 var async = require("async");
-module.exports = {
-    get : function(req,res){
+module.exports.post = function(req,res){
+    var data = req.body;
+    console.log(req.method);
+    if(data.type == "add"){
+        async.waterfall([
+            find_phone,
+            add_to_favorite
+        ],function(err,result){
+            if(err){
+                res.sendStatus(500);
+            }
+            else{
+                res.send(result);
+            }
+        });
+        function find_phone(callback){
+            var id = data.id;
+            db.phones.findOne({_id : id},{}).lean().exec(function(err,info){
+                if(err){
+                    console.mongo(err);
+                    console.error(err);
+                    callback(err,null);
+                }
+                else{
+                    callback(null,info._id);
+                }
+            });
+        }
+        function add_to_favorite(_id,callback){
+            var name = req.session.username;
+            db.users.findOne({username : name},{},function(err,info){
+                if(err){
+                    console.mongo(err);
+                    console.error(err);
+                    callback(err,null);
+                }
+                else{
+                    if(info.favorite.indexOf(_id) == -1){
+                        info.favorite.push(_id);
+                        info.save(function(err){
+                            if(err){
+                                console.mongo(err);
+                                console.error(err);
+                                callback(err,null);
+                            }
+                            else{
+                                callback(null,true);
+                            }
+                        });
+                    }
+                    else{
+                        callback(null,false);
+                    }
+
+                }
+            });
+
+        }
+    }
+    else if(data.type == "get_data") {
         async.waterfall([
             find_user,
             find_favorite
         ],function(err,result){
             if(err){
-                error_handel.error_render(res,"500","اشکال داخلی سرور.");
+                res.sendStatus(500);
             }
             else{
-                res.render('favorite',{data:result});
+                res.json(result);
             }
         });
         function find_user(callback){
@@ -42,65 +99,6 @@ module.exports = {
                 }
             });
         }
-
-
-    },
-    post:function(req,res){
-        var data = req.body;
-        async.waterfall([
-           find_phone,
-            add_to_favorite
-        ],function(err,result){
-            if(err){
-                res.sendStatus(500);
-            }
-            else{
-                res.send(result);
-            }
-        });
-        function find_phone(callback){
-            var phoneNumber = data.phone_number;
-            db.phones.findOne({phone_number : phoneNumber},{}).lean().exec(function(err,info){
-               if(err){
-                   console.mongo(err);
-                   console.error(err);
-                   callback(err,null);
-               }
-                else{
-                   callback(null,info._id);
-               }
-            });
-        }
-        function add_to_favorite(_id,callback){
-            var name = req.session.username;
-            db.users.findOne({username : name},{},function(err,info){
-               if(err){
-                   console.mongo(err);
-                   console.error(err);
-                   callback(err,null);
-               }
-                else{
-                   if(info.favorite.indexOf(_id) == -1){
-                       info.favorite.push(_id);
-                       console.log(info.favorite);
-                       info.save(function(err){
-                           if(err){
-                               console.mongo(err);
-                               console.error(err);
-                               callback(err,null);
-                           }
-                           else{
-                               callback(null,true);
-                           }
-                       });
-                   }
-                   else{
-                       callback(null,false);
-                   }
-                  
-               }
-            });
-
-        }
     }
+
 };

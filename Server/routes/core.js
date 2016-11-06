@@ -4,16 +4,17 @@
 var db = require("mongo_schemas");
 module.exports = {
     get:function(req,res){
+        var permission = (typeof req.session.role == 'undefined')?0:req.session.role;
         if(typeof req.session.role == 'undefined'){
             res.render('index',{data : {
                 version : global.init.version ,
-                role : -1
+                role : permission
             }});
         }
         else{
             res.render('index',{data : {
                 version : global.init.version ,
-                role : req.session.role,
+                role : permission,
                 username : req.session.username,
                 name : req.session.name
             }});
@@ -26,7 +27,7 @@ module.exports = {
         }
         else{
             var query = new RegExp(clean_data,'i');
-            db.phones.find( { $or:[ {'name':query}, {'departmenet':query}, {'inside_phone_number':query},{'phone_number':query} ]},{_id:false}).lean().exec(function(err,info){
+            db.phones.find( { $or:[ {'name':query}, {'departmenet':query}, {'inside_phone_number':query},{'phone_number':query} ]},{}).lean().exec(function(err,info){
                 if(err){
                     console.mongo(err);
                     res.statusCode = 500;

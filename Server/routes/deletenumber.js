@@ -3,9 +3,8 @@
  */
 var db = require("mongo_schemas");
 module.exports.post = function(req,res){
-
-    var phoneNumber = req.body.phone_number;
-    db.phones.findOne({phone_number:phoneNumber},{},function(err,data){
+    var id = req.body._id;
+    db.phones.findOne({_id:id},{},function(err,data){
        if(err){
            console.mongo(err);
            console.error(err);
@@ -17,7 +16,7 @@ module.exports.post = function(req,res){
                   console.mongo(err);
                   console.error(err);
                   res.sendStatus(500);
-              } 
+              }
                else{
                   res.send("ok");
               }

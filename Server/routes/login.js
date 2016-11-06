@@ -5,12 +5,14 @@ var db = require("mongo_schemas");
 var ascync = require("async");
 var bcrypt = require("bcrypt");
 module.exports.post = function(req,res){
+            console.log("dadwadawd");
     var data = req.body;
     ascync.waterfall([
         check_username,
         check_password
     ],function(err,result){
         if(err){
+
             res.statusCode = 500;
             res.sendStatus(500);
         }
