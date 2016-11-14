@@ -8,7 +8,8 @@ var get_routes = [
     'login' ,
     'add_phone',
     'enroll',
-    'logout'
+    'logout',
+    'user_management'
 ];
 var post_route = [
     'favorite',
@@ -17,14 +18,11 @@ var post_route = [
     'login' ,
     'add_phone',
     'enroll',
-    'delfavorite'
+    'delfavorite',
+    'user_management',
+    'edit_user',
+    'deluser',
 ];
-var check_session = {
-    'main_content': 1,
-    'login' :0,
-    'add_phone':0,
-    'enroll':0,
-};
 module.exports = function(app){
 
     app.route('/').get(require('./core').get).post(require('./core').post);
@@ -33,7 +31,7 @@ module.exports = function(app){
             _route.file_get(app,index);
         }
         catch (err){
-            if(check_session[index] == 1)
+            if(index == 'main_content')
                 _route.render_get(app,index,1);
             else
                 _route.render_get(app,index,0);

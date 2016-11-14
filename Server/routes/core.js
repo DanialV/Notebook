@@ -27,7 +27,7 @@ module.exports = {
         }
         else{
             var query = new RegExp(clean_data,'i');
-            db.phones.find( { $or:[ {'name':query}, {'departmenet':query}, {'inside_phone_number':query},{'phone_number':query} ]},{}).lean().exec(function(err,info){
+            db.phones.find( { $or:[ {'name':query}, {'departmenet':query}, {'inside_phone_number':query},{'phone_number':query} ]},{}).sort({'name': 'asc'}).lean().exec(function(err,info){
                 if(err){
                     console.mongo(err);
                     res.statusCode = 500;

@@ -1,7 +1,7 @@
 /**
  * Created by danial on 9/5/16.
  */
-myapp = angular.module('sadjad118', ['root','add_phone','login','enroll','favorite']);
+myapp = angular.module('sadjad118', ['root','add_phone','login','enroll','favorite','user_management']);
 myapp.config(function($routeProvider) {
     $routeProvider.otherwise({templateUrl: 'error'})
 });
@@ -30,6 +30,7 @@ myapp.controller("body_controller",function($scope,$route){
         $scope.enrollActive = '';
         $scope.addphoneActive = '';
         $scope.favoriteActive = '';
+        $scope.usermanagementActive = '';
         $scope[type+'Active'] = 'active';
     };
     $scope.condtions = null;
@@ -44,4 +45,3 @@ myapp.controller("body_controller",function($scope,$route){
         window.location = '/logout';
     };
 });
-

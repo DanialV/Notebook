@@ -14,8 +14,10 @@ var route_permission = {
     '/login':0,
     '/enroll':0,
     '/add_phone':2,
-    'error':0,
-    '/favicon.ico':0
+    '/favicon.ico':0,
+    '/user_management':0,
+    '/edit_user':2,
+    '/deluser':2
 };
 module.exports = function(app){
     app.route('/*').get(function(req,res,next){
@@ -26,7 +28,6 @@ module.exports = function(app){
           next();
         }
         else{
-          console.log(req.url);
           error_handel.error_render(res,403, "اجازه مشاهده ی چنین صفحه ای رو ندارید!");
         }
       }
@@ -42,7 +43,6 @@ module.exports = function(app){
           next();
         }
         else{
-          console.log(req.url);
           error_handel.error_render(res,403, "اجازه مشاهده ی چنین صفحه ای رو ندارید!");
         }
       }

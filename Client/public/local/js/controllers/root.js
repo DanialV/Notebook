@@ -14,6 +14,7 @@ _root.config(function ($routeProvider) {
             $scope._data.search = "";
             $scope.query = [];
             $scope.edit_form = {};
+            $scope._edit_form = {};
             $scope.delete_row = true;
             $scope.onsubmit = function(){
                 $scope.delete_row = true;
@@ -32,6 +33,7 @@ _root.config(function ($routeProvider) {
                 }
             };
             $scope.onedit = function(specific_user){
+                $scope._edit_form = specific_user;
                 $scope.edit_form.name = specific_user.name;
                 $scope.edit_form.departmenet = specific_user.departmenet;
                 $scope.edit_form.phone_number = specific_user.phone_number;
@@ -44,6 +46,12 @@ _root.config(function ($routeProvider) {
                     url:'/editnumber',
                     data : $scope.edit_form
                 }).success(function(){
+                    var index = $scope.query.indexOf($scope._edit_form);
+                    console.log(index);
+                    $scope.query[index].name = $scope.edit_form.name;
+                    $scope.query[index].departmenet = $scope.edit_form.departmenet;
+                    $scope.query[index].phone_number = $scope.edit_form.phone_number;
+                    $scope.query[index].inside_phone_number = $scope.edit_form.inside_phone_number;
                     toastr["info"]("تغییرات با موفقیت ثبت شد.","ویرایش");
 
                 }).error(function(err){

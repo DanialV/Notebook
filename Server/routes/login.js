@@ -5,7 +5,6 @@ var db = require("mongo_schemas");
 var ascync = require("async");
 var bcrypt = require("bcrypt");
 module.exports.post = function(req,res){
-            console.log("dadwadawd");
     var data = req.body;
     ascync.waterfall([
         check_username,

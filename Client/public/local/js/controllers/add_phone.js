@@ -16,8 +16,7 @@ _add_phone.config(function ($routeProvider) {
                         method  : 'POST',
                         url     : '/add_phone',
                         data    : $scope.user//forms user object
-                    })
-                        .success(function(data) {
+                    }).success(function(data) {
                             if(data == "ok"){
                                 toastr.success("اطلاعات کاربر با موفقیت ثبت شد.","ثبت");
                                 $scope.user.name = "";
@@ -34,13 +33,9 @@ _add_phone.config(function ($routeProvider) {
                             else if(data == "duplicate_inside_number"){
                                 toastr.error("شماره داخلی در سیستم موجود است.","خطا");
                             }
-                        })
-                        .error(function(err){
+                        }).error(function(err){
                             toastr.error( "اشکال داخلی سرور","خطا");
-                        })
-
-
+                        });
                 };
-
             }});
 });

@@ -5,7 +5,6 @@ var db  = require("mongo_schemas");
 var async = require("async");
 module.exports.post = function(req,res){
     var data = req.body;
-    console.log(req.method);
     if(data.type == "add"){
         async.waterfall([
             find_phone,

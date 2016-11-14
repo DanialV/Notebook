@@ -1,0 +1,68 @@
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <form  role="form" method="POST">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">ویراش اطلاعات کاربران</h4>
+            </div>
+            <div class="modal-body">
+                    <fieldset>
+                        <div class="form-group">
+                            <input type="text" name="first_name" ng-model="edit_user.first_name" class="form-control" placeholder="نام" required >
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="last_name" ng-model="edit_user.last_name" class="form-control" placeholder="نام خانوادگی" required>
+                        </div>
+                        <div class="form-group">
+                            <input style="font-family:'';" type="text" name="username" ng-model="edit_user.username" class="form-control" dir="ltr" placeholder="نام کاربری" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" ng-change="password_check()" ng-model="edit_user.password" class="form-control" dir="ltr" data-toggle="password" placeholder='رمز عبور'>
+                        </div>
+                        <div class="form-group" ng-class="password_validation">
+                            <input type="password" name="password_repeat" ng-change="password_check()" ng-model="edit_user.repeat_password" class="form-control" dir="ltr" data-toggle="password" ng-match="edit_user.password" placeholder='تکرار رمز عبور'>
+                        </div>
+                        <div class="form-group" >
+                            <input type="email" name="email" ng-model="edit_user.email" class="form-control" dir="ltr" placeholder="ایمیل" required>
+                        </div>
+                        <div class="form-group" >
+                          <select ng-model='edit_user.role'  class="form-control">
+                              <option value="1">کاربر عادی</option>
+                              <option value="2">کاربر سیستمی</option>
+                          </select>
+                        <div class="form-group" >
+                    </fieldset>
+            </div>
+            <div class="modal-footer" style="margin-top:0;">
+                <div style="float:right">
+                    <button type="button " class="btn btn-default" ng-click="close()" data-dismiss="modal">بستن</button>
+                    <button ng-click="sendedit()" type="submit" class="btn btn-primary" data-dismiss="modal">ذخیره تغییرات</button>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+<table class="table table-striped table-hover ">
+    <thead>
+    <tr>
+        <th>نام</th>
+        <th>نام خانوادگی</th>
+        <th>نام کاربری</th>
+        <th>نوع کاربری</th>
+        <th>ایمیل</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="result in user_data">
+          <td>{{result.first_name}}</td>
+        <td>{{result.last_name}}</td>
+        <td style="font-family:'';">{{result.username}}</td>
+        <td>{{(result.role == 1) ? "کاربر عادی":"کاربر سیستمی"}}</td>
+        <td>{{result.email}}</td>
+        <td><button type="button" class="btn btn-warning btn-sm"   ng-click="on_change(result)" data-toggle="modal" data-target="#myModal">ویرایش</button></td>
+        <td><button type="button" class="btn btn-danger btn-sm"  ng-click="delete_user(result)">حذف</button></td>
+    </tr>
+    </tbody>
+</table>

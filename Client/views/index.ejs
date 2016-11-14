@@ -29,6 +29,7 @@
           <li ng-class="favoriteActive"><a  href="#/favorite">لیست مورد علاقه <span class="sr-only">(current)</span></a></li>
           <%if(data.role == 2){%>
           <li ng-class="addphoneActive"><a id="add_phone" href="#/add_phone">اضافه کردن شماره تلفن</a></li>
+          <li ng-class="usermanagementActive"><a id="add_phone" href="#/user_management">مدیریت کاربران</a></li>
           <%}%>
         <%}%>
       </ul>
@@ -40,7 +41,7 @@
                     <strong><%= data.name%></strong>
                     <span class="glyphicon glyphicon-chevron-down"></span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-right pull-left" style="background-color: #fff2f6;">
+                <ul class="dropdown-menu dropdown-menu-right pull-left" >
                     <li>
                         <div class="navbar-login">
                             <div class="row">
@@ -112,6 +113,7 @@
   <script type="application/javascript" src="../dist/angular/angular.min.js"> </script>
   <script type="application/javascript" src="../dist/angular-route/angular-route.min.js"> </script>
   <script type="application/javascript" src="../dist/angular-cookies/angular-cookies.min.js"> </script>
+  <script type="application/javascript" src="../dist/bootstrap-show-password/bootstrap-show-password.min.js"> </script>
   <script type="application/javascript" src="../local/js/toastr.min.js"> </script>
   <script type="application/javascript" src="../local/js/routes.js"> </script>
   <script type="application/javascript" src="../local/js/controllers/login.js"> </script>
@@ -119,4 +121,5 @@
   <script type="application/javascript" src="../local/js/controllers/add_phone.js"> </script>
   <script type="application/javascript" src="../local/js/controllers/enroll.js"> </script>
   <script type="application/javascript" src="../local/js/controllers/favorite.js"> </script>
+  <script type="application/javascript" src="../local/js/controllers/user_management.js"> </script>
 </html>

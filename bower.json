@@ -23,5 +23,5 @@
     "angular-route": "^1.5.8",
     "angular-persian": "^2.0.3",
     "angular-cookies": "^1.5.8"
-  }
+    }
 }
