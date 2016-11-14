@@ -1,6 +1,6 @@
 {
   "db_name" : "118" ,
-  "developer" : true ,
+  "developer" : false ,
   "mongo_log" : true ,
   "time_diffrence" : 3,
   "req_per_min" : 50
