@@ -11,7 +11,6 @@ module.exports.post = function(req,res){
         check_password
     ],function(err,result){
         if(err){
-
             res.statusCode = 500;
             res.sendStatus(500);
         }

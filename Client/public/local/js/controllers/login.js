@@ -24,7 +24,7 @@ _login.config(function ($routeProvider) {
                                 window.location.replace("/");
                             }, 500);
                         }
-                        else if (data == "duplicate_username") {
+                        else if (data == false) {
                             toastr.error("نام کاربری یا رمز عبور اشتباه است.","خطا");
                         }
                     })
