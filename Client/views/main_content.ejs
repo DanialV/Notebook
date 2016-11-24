@@ -1,3 +1,4 @@
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <form  role="form" method="POST">
@@ -48,17 +49,30 @@
         </div>
     </div>
 </div>
+<div class="row"  ng-show="!_data.search">
+    <blockquote>
+  <h3>راهنمای استفاده از سیستم:</h3>
+<p>
+
+  جستجوگر شماره تلفن 118،اعضا دانشگاه سجاد را براساس نام ،نام خانوادگی،سمت وشماره تلفن جستجو می نماید برای این منظورکافی است در محل مشخص شده عبارت مورد نظر خود را وارد کنیدو نتایج مشخص شده را مشاهده نمایید.
+</p>
+<h3 style="font-size:20px">ثبت نام در سیستم:</h3>
+<p>
+	در صورتی که علاقمند هستید "لیست مورد علاقه من" داشته باشید می توانید در سیستم ثبت نام کنید.
+</p>
+    </blockquote>
+</div>
     <table class="table table-striped table-hover "  ng-show="_data.search" ng-if="delete_row">
         <thead>
         <tr>
-            <%if(data.role >= 0){%>
+        <%if(data.role >= 1){%>
             <td>مورد علاقه</td>
             <%}%>
             <th>نام/نام خانوادگی</th>
             <th>سمت</th>
             <th>شماره تلفن</th>
             <th>شماره داخلی</th>
-        <%if(data.role >= 1){%>
+        <%if(data.role >= 2){%>
             <th>تغییرات</th>
             <th>حذف</th>
         <%}%>
@@ -67,7 +81,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="result in query" >
-            <%if(data.role >= 0){%>
+            <%if(data.role >= 1){%>
             <td><a href="" ng-click="onfavorite(result)"> <span class="glyphicon glyphicon-plus" aria-hidden="true" style=" color: #ff7224;
     text-shadow: 1px 1px 1px #ccc;
     font-size: 1.5em;right: 10px;"></span></a></td>
@@ -76,7 +90,7 @@
             <td>{{result.departmenet}}</td>
             <td>{{result.phone_number}}</td>
             <td>{{result.inside_phone_number}}</td>
-            <%if(data.role >= 1){%>
+            <%if(data.role >= 2){%>
             <td><button type="button" class="btn btn-warning btn-sm" ng-click="onedit(result)" data-toggle="modal" data-target="#myModal">ویرایش</button></td>
             <td><button type="button" class="btn btn-danger btn-sm" ng-click="ondelete(result)">حذف</button></td>
             <%}%>

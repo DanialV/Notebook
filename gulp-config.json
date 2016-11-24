@@ -1,0 +1,24 @@
+{
+   "dep_css": [
+     "resources/dist/bootswatch/cerulean/bootstrap.min.css",
+     "resources/local/css/bootstrap_rtl.css",
+     "resources/local/css/toastr.min.css",
+     "resources/local/css/style.css"
+   ],
+   "dep_js": [
+     "resources/dist/jquery/dist/jquery.js",
+     "resources/dist/bootstrap/dist/js/bootstrap.js",
+     "resources/dist/angular/angular.js",
+     "resources/dist/angular-route/angular-route.js",
+     "resources/dist/angular-cookies/angular-cookies.js",
+     "resources/dist/bootstrap-show-password/bootstrap-show-password.js",
+     "resources/local/js/toastr.min.js",
+     "resources/local/js/routes.js",
+     "resources/local/js/controllers/login.js",
+     "resources/local/js/controllers/root.js",
+     "resources/local/js/controllers/add_phone.js",
+     "resources/local/js/controllers/enroll.js",
+     "resources/local/js/controllers/favorite.js",
+     "resources/local/js/controllers/user_management.js"
+   ]
+}

@@ -24,7 +24,6 @@ var post_route = [
     'deluser',
 ];
 module.exports = function(app){
-
     app.route('/').get(require('./core').get).post(require('./core').post);
     get_routes.forEach(function(index){
         try{
