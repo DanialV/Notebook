@@ -1,7 +1,6 @@
 global.init = require('./config.json');
 global.init.version = require('./package.json').version;
 global.init.db_name = '118';
-
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
