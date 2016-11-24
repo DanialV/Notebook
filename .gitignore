@@ -1,5 +1,5 @@
 .idea
 /node_modules/
-Client/public/dist/
+resources/dist/
 .gitignore
 gulpfile.js
