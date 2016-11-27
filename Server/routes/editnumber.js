@@ -16,13 +16,15 @@ module.exports.post = function(req,res){
            data.departmenet = _data.departmenet;
            data.phone_number = _data.phone_number;
            data.inside_phone_number = _data.inside_phone_number;
+           data.email = _data.email;
+           data.room_number = _data.room_number;
            data.save(function(err){
                if(err){
                    console.mongo(err);
-                   console.error(err);
                    res.sendStatus(500);
                }
                else{
+                 console.mongo("test");
                    res.send("ok");
                }
            });

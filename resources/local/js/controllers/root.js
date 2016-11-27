@@ -1,7 +1,7 @@
 /**
  * Created by danial on 9/6/16.
  */
-_root = angular.module('root',['ngRoute','sadjad118']);
+_root = angular.module('root',['ngRoute']);
 _root.config(function ($routeProvider) {
     $routeProvider.when('/', {
         templateUrl: 'main_content'
@@ -19,14 +19,13 @@ _root.config(function ($routeProvider) {
             $scope.onsubmit = function(){
                 $scope.delete_row = true;
                 if(typeof $scope._data.search != 'undefined'){
-                    $scope._data.search = $scope._data.search.replace(/[\\`|=^#!~&;$%@"<>()+/*,]/g, "");
+                    $scope._data.search = $scope._data.search.replace(/[\`|=^#!~&;$%@"<>()+/*,\[\]]/g, "");
                     $http({
                         method:'POST',
                         url:'/',
                         data:$scope._data
                     }).success(function(data){
                         $scope.query = data;
-                        //console.dir($scope.query[0]._id);
                     }).error(function(err){
                         toastr.error( "اشکال داخلی سرور","خطا");
                     });
@@ -38,6 +37,8 @@ _root.config(function ($routeProvider) {
                 $scope.edit_form.departmenet = specific_user.departmenet;
                 $scope.edit_form.phone_number = specific_user.phone_number;
                 $scope.edit_form.inside_phone_number = specific_user.inside_phone_number;
+                $scope.edit_form.email = specific_user.email;
+                $scope.edit_form.room_number = specific_user.room_number;
                 $scope.edit_form.finder = specific_user._id;
             };
             $scope.sendedit = function(){
@@ -47,11 +48,12 @@ _root.config(function ($routeProvider) {
                     data : $scope.edit_form
                 }).success(function(){
                     var index = $scope.query.indexOf($scope._edit_form);
-                    console.log(index);
                     $scope.query[index].name = $scope.edit_form.name;
                     $scope.query[index].departmenet = $scope.edit_form.departmenet;
                     $scope.query[index].phone_number = $scope.edit_form.phone_number;
                     $scope.query[index].inside_phone_number = $scope.edit_form.inside_phone_number;
+                    $scope.query[index].email = $scope.edit_form.email;
+                    $scope.query[index].room_number = $scope.edit_form.room_number;
                     toastr["info"]("تغییرات با موفقیت ثبت شد.","ویرایش");
 
                 }).error(function(err){

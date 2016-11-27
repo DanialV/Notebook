@@ -21,13 +21,13 @@ module.exports = {
         }
     },
     post:function(req,res){
-        var clean_data = (typeof req.body.search == 'undefined')?'':req.body.search.replace(/[\\`|=^#!~&;$%@"<>()+/*,]/g, "");
+        var clean_data = (typeof req.body.search == 'undefined')?'':req.body.search.replace(/[\`|=^#!~&;$%@"<>()+/*\[\],]/g, "");
         if(clean_data == ''){
             res.send({});
         }
         else{
             var query = new RegExp(clean_data,'i');
-            db.phones.find( { $or:[ {'name':query}, {'departmenet':query}, {'inside_phone_number':query},{'phone_number':query} ]},{}).sort({'name': 'asc'}).lean().exec(function(err,info){
+            db.phones.find( { $or:[ {'name':query}, {'departmenet':query}, {'inside_phone_number':query},{'phone_number':query},{'email':query},{'room_number':query} ]},{}).sort({'name': 'asc'}).lean().exec(function(err,info){
                 if(err){
                     console.mongo(err);
                     res.statusCode = 500;

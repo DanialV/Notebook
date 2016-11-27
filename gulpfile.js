@@ -43,9 +43,14 @@ gulp.task('build_dep_js', function() {
       .pipe(gulp.dest('Client/public/js/'));
    return stream;
 });
-
-
 gulp.task('build', [
     'build_dep_css',
     'build_dep_js'
   ], function() {});
+
+gulp.task('watch', function(){
+    gulp.watch('resources/local/js/controllers/*.*', ['build']);
+    gulp.watch('resources/local/js/*.*', ['build']);
+    gulp.watch('resources/local/css/*.*', ['build']);
+
+});

@@ -12,7 +12,6 @@
     <meta property="root" content="http://118.sadjad.ac.ir" />
     <link href='../css/app.css' rel='stylesheet' type='text/css'>
   </head>
-
   <body ng-app="sadjad118" ng-controller="body_controller" ng-cloak>
   <nav class="navbar navbar-default">
     <div class="navbar-header">
@@ -76,27 +75,27 @@
         <%}%>
     </div>
   </nav>
-      <div class="col-md-9">
-          <div class="panel panel-info">
-              <div class="panel-heading">
-                  <h3 id="content_header" class="panel-title" ng-class="header" >{{Header}}</h3>
-              </div>
-              <div id="content_body" class="panel-body" ng-view ng-class="body">
-              </div>
-          </div>
-      </div>
-      <div class="col-md-3">
-          <div class="panel panel-info">
-              <div class="panel-heading">
-                  <h3 id="content_header" class="panel-title">لینک های مفید</h3>
-              </div>
-              <div id="content_body" class="panel-body">
-                  <a href="{{stu_url}}"  target="_blank" class="btn btn-primary  btn-block">سیستم دانشجویی</a>
-                  <a href="{{sepehr_url}}" target="_blank" class="btn btn-info  btn-block">سیستم دانلود سپهر</a>
-                  <a href="{{pooya_url}}"  target="_blank" class="btn btn-warning  btn-block">سامانه پویا</a>
-              </div>
-          </div>
-      </div>
+    <div class="col-md-9">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 id="content_header" class="panel-title" ng-class="header" >{{Header}}</h3>
+            </div>
+            <div id="content_body" class="panel-body" ng-view ng-class="body">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 id="content_header" class="panel-title">لینک های مفید</h3>
+            </div>
+            <div id="content_body" class="panel-body">
+                <a href="{{stu_url}}"  target="_blank" class="btn btn-primary  btn-block">سیستم دانشجویی</a>
+                <a href="{{sepehr_url}}" target="_blank" class="btn btn-info  btn-block">سیستم دانلود سپهر</a>
+                <a href="{{pooya_url}}"  target="_blank" class="btn btn-warning  btn-block">سامانه پویا</a>
+            </div>
+        </div>
+    </div>
   <nav class="footer">
       <div class="container">
           <div class="col-sm-6 ">

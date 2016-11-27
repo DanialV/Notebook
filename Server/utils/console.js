@@ -13,10 +13,12 @@ console.mongo = function(text){
     text = "Date : " + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() +
         " " + date.getHours() + " : " + date.getMinutes() + " : " + date.getSeconds() + " ---> "+text;
     logs.log = text;
-    console.log(text);
     db.logs(logs).save(function(err,doc){
         if(err){
             console.error(err);
+        }
+        else{
+          console.log(text);
         }
     });
 };

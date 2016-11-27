@@ -23,6 +23,8 @@ _add_phone.config(function ($routeProvider) {
                                 $scope.user.departmenet = "";
                                 $scope.user.phone_number = "";
                                 $scope.user.inside_phone_number = "";
+                                $scope.user.email = "";
+                                $scope.user.room_number = "";
                             }
                             else if (data == "duplicate_name") {
                                 toastr.error("نام کاربر در سیستم موجود است.","خطا");
