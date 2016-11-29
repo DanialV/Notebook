@@ -1,0 +1,11 @@
+{
+    "apps": [{
+        "name": "118",
+        "script": "./bin/www",
+        "err_file": "118_err.log",
+        "out_file": "118_out.log",
+        "instances": 2,
+        "exec_mode": "cluster",
+        "args": "['-x']"
+    }]
+}
