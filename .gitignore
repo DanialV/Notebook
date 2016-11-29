@@ -1,5 +1,3 @@
 .idea
 /node_modules/
 resources/dist/
-.gitignore
-gulpfile.js
