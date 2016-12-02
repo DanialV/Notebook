@@ -8,10 +8,11 @@
    "dep_js": [
      "resources/dist/jquery/dist/jquery.js",
      "resources/dist/bootstrap/dist/js/bootstrap.js",
-     "resources/dist/angular/angular.js",
+     "resources/dist/angular/angular.min.js",
      "resources/dist/angular-route/angular-route.js",
      "resources/dist/angular-cookies/angular-cookies.js",
-     "resources/dist/bootstrap-show-password/bootstrap-show-password.js",
+     "resources/dist/spin.js/spin.min.js",
+     "resources/dist/angular-spinner/angular-spinner.min.js",
      "resources/local/js/toastr.min.js",
      "resources/local/js/routes.js",
      "resources/local/js/controllers/login.js",

@@ -1,11 +1,11 @@
 /**
  * Created by danial on 9/6/16.
  */
-_root = angular.module('root',['ngRoute']);
+_root = angular.module('root',['ngRoute','angularSpinner']);
 _root.config(function ($routeProvider) {
     $routeProvider.when('/', {
         templateUrl: 'main_content'
-        ,controller:function ($scope,$http) {
+        ,controller:function ($scope,$http,usSpinnerService) {
             $scope.setActive('');
             $scope.HeaderName('جستجوی شماره تلفن');
             $scope.body = 'fade-handel';
@@ -16,17 +16,21 @@ _root.config(function ($routeProvider) {
             $scope.edit_form = {};
             $scope._edit_form = {};
             $scope.delete_row = true;
+            usSpinnerService.stop('spinner');
             $scope.onsubmit = function(){
                 $scope.delete_row = true;
+                usSpinnerService.stop('spinner');
                 if(typeof $scope._data.search != 'undefined'){
-                    $scope._data.search = $scope._data.search.replace(/[\`|=^#!~&;$%@"<>()+/*,\[\]]/g, "");
+                    usSpinnerService.spin('spinner');
                     $http({
                         method:'POST',
                         url:'/',
                         data:$scope._data
                     }).success(function(data){
+                        usSpinnerService.stop('spinner');
                         $scope.query = data;
                     }).error(function(err){
+                        usSpinnerService.stop('spinner');
                         toastr.error( "اشکال داخلی سرور","خطا");
                     });
                 }
@@ -71,7 +75,7 @@ _root.config(function ($routeProvider) {
                     toastr["warning"]("شماره تلفن با موفقیت حذف شد.","حذف");
                 }).error(function(){
                     toastr.error( "اشکال داخلی سرور","خطا");
-                }) ;
+                });
             };
             $scope.onfavorite = function(result){
                 var id = result._id;

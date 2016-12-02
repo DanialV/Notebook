@@ -11,7 +11,7 @@ console.mongo = function(text){
     var date = new Date();
     var logs = {};
     text = "Date : " + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() +
-        " " + date.getHours() + " : " + date.getMinutes() + " : " + date.getSeconds() + " ---> "+text;
+          " " + date.getHours() + " : " + date.getMinutes() + " : " + date.getSeconds() + " ---> "+text;
     logs.log = text;
     db.logs(logs).save(function(err,doc){
         if(err){

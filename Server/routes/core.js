@@ -21,7 +21,7 @@ module.exports = {
         }
     },
     post:function(req,res){
-        var clean_data = (typeof req.body.search == 'undefined')?'':req.body.search.replace(/[\`|=^#!~&;$%@"<>()+/*\[\],]/g, "");
+        var clean_data = (typeof req.body.search == 'undefined')?'':req.body.search.replace(/[.?*+^$[\]\\(){}|-]/g, "\\$&");
         if(clean_data == ''){
             res.send({});
         }
