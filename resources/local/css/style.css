@@ -2,51 +2,51 @@
     font-family: IRANSans;
     font-style: normal;
     font-weight: bold;
-    src: url('https://acm.sadjad.ac.ir/dist/fonts/eot/IRANSansWeb_Bold.eot');
-    src: url('https://acm.sadjad.ac.ir/dist/fonts/eot/IRANSansWeb_Boldd41d.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
-    url('https://acm.sadjad.ac.ir/dist/fonts/woff2/IRANSansWeb_Bold.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
-    url('https://acm.sadjad.ac.ir/dist/fonts/woff/IRANSansWeb_Bold.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-    url('https://acm.sadjad.ac.ir/dist/fonts/ttf/IRANSansWeb_Bold.ttf') format('truetype');
+    src: url('../fonts/IRANSansWeb_Bold.eot');
+    src: url('../fonts/IRANSansWeb_Boldd41d.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+    url('../fonts/IRANSansWeb_Bold.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+    url('../fonts/IRANSansWeb_Bold.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('../fonts/IRANSansWeb_Bold.ttf') format('truetype');
 }
 @font-face {
     font-family: IRANSans;
     font-style: normal;
     font-weight: 500;
-    src: url('https://acm.sadjad.ac.ir/dist/fonts/eot/IRANSansWeb_Medium.eot');
-    src: url('https://acm.sadjad.ac.ir/dist/fonts/eot/IRANSansWeb_Mediumd41d.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
-    url('https://acm.sadjad.ac.ir/dist/fonts/woff2/IRANSansWeb_Medium.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
-    url('https://acm.sadjad.ac.ir/dist/fonts/woff/IRANSansWeb_Medium.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-    url('https://acm.sadjad.ac.ir/dist/fonts/ttf/IRANSansWeb_Medium.ttf') format('truetype');
+    src: url('../fonts/IRANSansWeb_Medium.eot');
+    src: url('../fonts/IRANSansWeb_Mediumd41d.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+    url('../fonts/IRANSansWeb_Medium.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+    url('../fonts/IRANSansWeb_Medium.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('../f/IRANSansWeb_Medium.ttf') format('truetype');
 }
 @font-face {
     font-family: IRANSans;
     font-style: normal;
     font-weight: 300;
-    src: url('https://acm.sadjad.ac.ir/dist/fonts/eot/IRANSansWeb_Light.eot');
-    src: url('https://acm.sadjad.ac.ir/dist/fonts/eot/IRANSansWeb_Lightd41d.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
-    url('https://acm.sadjad.ac.ir/dist/fonts/woff2/IRANSansWeb_Light.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
-    url('https://acm.sadjad.ac.ir/dist/fonts/woff/IRANSansWeb_Light.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-    url('https://acm.sadjad.ac.ir/dist/fonts/ttf/IRANSansWeb_Light.ttf') format('truetype');
+    src: url('../fonts/IRANSansWeb_Light.eot');
+    src: url('../fonts/IRANSansWeb_Lightd41d.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+    url('../fonts/IRANSansWeb_Light.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+    url('../fonts/IRANSansWeb_Light.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('../fonts/IRANSansWeb_Light.ttf') format('truetype');
 }
 @font-face {
     font-family: IRANSans;
     font-style: normal;
     font-weight: 200;
-    src: url('https://acm.sadjad.ac.ir/dist/fonts/eot/IRANSansWeb_UltraLight.eot');
-    src: url('https://acm.sadjad.ac.ir/dist/fonts/eot/IRANSansWeb_UltraLightd41d.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
-    url('https://acm.sadjad.ac.ir/dist/fonts/woff2/IRANSansWeb_UltraLight.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
-    url('https://acm.sadjad.ac.ir/dist/fonts/woff/IRANSansWeb_UltraLight.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-    url('https://acm.sadjad.ac.ir/dist/fonts/ttf/IRANSansWeb_UltraLight.ttf') format('truetype');
+    src: url('../fonts/IRANSansWeb_UltraLight.eot');
+    src: url('../fonts/IRANSansWeb_UltraLightd41d.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+    url('../fonts/IRANSansWeb_UltraLight.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+    url('../fonts/IRANSansWeb_UltraLight.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('../fonts/IRANSansWeb_UltraLight.ttf') format('truetype');
 }
 @font-face {
     font-family: IRANSans;
     font-style: normal;
     font-weight: normal;
-    src: url('https://acm.sadjad.ac.ir/dist/fonts/eot/IRANSansWeb.eot');
-    src: url('https://acm.sadjad.ac.ir/dist/fonts/eot/IRANSansWebd41d.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
-    url('https://acm.sadjad.ac.ir/dist/fonts/woff2/IRANSansWeb.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
-    url('https://acm.sadjad.ac.ir/dist/fonts/woff/IRANSansWeb.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-    url('https://acm.sadjad.ac.ir/dist/fonts/ttf/IRANSansWeb.ttf') format('truetype');
+    src: url('../fonts/IRANSansWeb.eot');
+    src: url('../fonts/IRANSansWebd41d.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+    url('../fonts/IRANSansWeb.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+    url('../fonts/IRANSansWeb.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('../fonts/IRANSansWeb.ttf') format('truetype');
 }
 
 .navbar{
