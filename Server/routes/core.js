@@ -21,14 +21,12 @@ module.exports = {
         }
     },
     post:function(req,res){
-        var clean_data = (typeof req.body.search == 'undefined')?'':req.body.search.replace(/[.?*+^$[\]\\(){}|-]/g, "\\$&");
+        let clean_data = (typeof req.body.search == 'undefined')?'':req.body.search.replace(/[.?*+^$[\]\\(){}|-]/g, "\\$&");
         if(clean_data == ''){
             res.send({});
         }
         else{
-
           let main_q = { $or : [] };
-
           let name_q = { $and : [] };
           let dep_q = { $and : [] };
 

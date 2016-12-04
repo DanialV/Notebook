@@ -1,7 +1,7 @@
 /**
  * Created by danial on 9/5/16.
  */
-myapp = angular.module('sadjad118', ['angular-loading-bar','root','add_phone','login','enroll','favorite','user_management']);
+myapp = angular.module('sadjad118', ['root','add_phone','login','enroll','favorite','user_management']);
 myapp.config(function($routeProvider) {
     $routeProvider.otherwise({templateUrl: 'error'})
 });

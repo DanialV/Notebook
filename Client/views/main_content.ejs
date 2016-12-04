@@ -1,13 +1,13 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
-        <form  role="form" method="POST">
+        <form  role="form" method="POST" ng-submit="sendedit()">
+                              <fieldset>
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">ویرایش شماره تلفن</h4>
             </div>
             <div class="modal-body">
-                    <fieldset>
                         <div class="form-group">
                             <input type="text"  ng-model="edit_form.name" class="form-control" placeholder="نام و نام خانوادگی / عنوان" required>
                         </div>
@@ -15,26 +15,27 @@
                             <input type="text"  ng-model="edit_form.departmenet" class="form-control" placeholder="سمت" required>
                         </div>
                         <div class="form-group">
-                            <input type="text"  ng-model="edit_form.phone_number" class="form-control" dir="ltr" placeholder="شماره تلفن" required>
+                            <input type="text"  ng-model="edit_form.phone_number" class="form-control" dir="ltr" placeholder="شماره تلفن" >
                         </div>
                         <div class="form-group">
                             <input type="text"   ng-model="edit_form.inside_phone_number" dir="ltr" class=" form-control" placeholder="شماره تلفن داخلی" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" ng-model="edit_form.email" class="form-control" dir="ltr" placeholder="ایمیل" required>
+                            <input type="text" ng-model="edit_form.email" class="form-control" dir="ltr" placeholder="ایمیل" >
                         </div>
                         <div class="form-group">
-                            <input type="text"   ng-model="edit_form.room_number" dir="ltr" class=" form-control" placeholder="شماره اتاق" required>
+                            <input type="text"   ng-model="edit_form.room_number" dir="ltr" class=" form-control" placeholder="شماره اتاق" >
                         </div>
-                    </fieldset>
+
             </div>
             <div class="modal-footer" style="margin-top:0;">
                 <div style="float:right">
-                    <button type="button " class="btn btn-default" ng-click="close()" data-dismiss="modal">بستن</button>
-                    <button ng-click="sendedit()" type="submit" class="btn btn-primary" data-dismiss="modal">ذخیره تغییرات</button>
+                  <button   type="submit" class="btn btn-primary"  >ذخیره تغییرات</button>
+                  <button id="close" type="button " class="btn btn-default"  data-dismiss="modal" >بستن</button>
                 </div>
             </div>
         </div>
+        </fieldset>
         </form>
     </div>
 </div>
@@ -58,53 +59,54 @@
     <blockquote>
   <h3>راهنمای استفاده از سیستم:</h3>
 <p>
-
-  جستجوگر شماره تلفن 118،اعضا دانشگاه سجاد را براساس نام ،نام خانوادگی،سمت وشماره تلفن جستجو می نماید برای این منظورکافی است در محل مشخص شده عبارت مورد نظر خود را وارد کنیدو نتایج مشخص شده را مشاهده نمایید.
+    جستجوگر شماره تلفن ۱۱۸، اعضا دانشگاه سجاد را براساس نام، نام خانوادگی، سمت و شماره‌تلفن جستجو می‌نماید برای این منظور کافی است در محل مشخص‌شده عبارت مورد نظر خود را وارد کنید و نتایج را مشاهده‌ نمایید.
 </p>
-<h3 style="font-size:20px">ثبت نام در سیستم:</h3>
+<h3 style="font-size:20px">ثبت‌نام در سیستم:</h3>
 <p>
-	در صورتی که علاقمند هستید "لیست مورد علاقه من" داشته باشید می توانید در سیستم ثبت نام کنید.
+	در صورتی که علاقمند هستید «لیست مورد علاقه من» داشته‌باشید می‌توانید در سیستم ثبت‌نام کنید.
 </p>
     </blockquote>
 </div>
 <span us-spinner spinner-key="spinner"></span>
-    <table class="table table-striped table-hover"  ng-show="_data.search" ng-if="delete_row">
-        <thead>
-        <tr>
-        <%if(data.role >= 1){%>
-            <td>مورد علاقه</td>
-            <%}%>
-            <th>نام/نام خانوادگی</th>
-            <th>سمت</th>
-            <th>شماره تلفن</th>
-            <th>شماره داخلی</th>
-            <th>ایمیل</th>
-            <th>شماره اتاق</th>
-        <%if(data.role >= 2){%>
-            <th>تغییرات</th>
-            <th>حذف</th>
-        <%}%>
+<div class="table-responsive">
+  <table class="table table-striped table-hover"  ng-show="_data.search" ng-if="delete_row">
+      <thead>
+      <tr>
+      <%if(data.role >= 1){%>
+          <td>مورد علاقه</td>
+          <%}%>
+          <th>نام/نام خانوادگی</th>
+          <th>سمت</th>
+          <th>شماره تلفن</th>
+          <th>شماره داخلی</th>
+          <th>ایمیل</th>
+          <th>شماره اتاق</th>
+      <%if(data.role >= 2){%>
+          <th>تغییرات</th>
+          <th>حذف</th>
+      <%}%>
 
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="result in query" >
-            <%if(data.role >= 1){%>
-            <td><a href="" ng-click="onfavorite(result)"> <span class="glyphicon glyphicon-plus" aria-hidden="true" style=" color: #ff7224;
-    text-shadow: 1px 1px 1px #ccc;
-    font-size: 1.5em;right: 10px;"></span></a></td>
-            <%}%>
-            <td>{{result.name}}</td>
-            <td>{{result.departmenet}}</td>
-            <td>{{result.phone_number}}</td>
-            <td>{{result.inside_phone_number}}</td>
-            <td>{{result.email}}</td>
-            <td>{{result.room_number}}</td>
-            <%if(data.role >= 2){%>
-            <td><button type="button" class="btn btn-warning btn-sm" ng-click="onedit(result)" data-toggle="modal" data-target="#myModal">ویرایش</button></td>
-            <td><button type="button" class="btn btn-danger btn-sm" ng-click="ondelete(result)">حذف</button></td>
-            <%}%>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="result in query" >
+          <%if(data.role >= 1){%>
+          <td><a href="" ng-click="onfavorite(result)"> <span class="glyphicon glyphicon-plus" aria-hidden="true" style=" color: #ff7224;
+  text-shadow: 1px 1px 1px #ccc;
+  font-size: 1.5em;right: 10px;"></span></a></td>
+          <%}%>
+          <td>{{result.name}}</td>
+          <td>{{result.departmenet}}</td>
+          <td>{{result.phone_number}}</td>
+          <td>{{result.inside_phone_number}}</td>
+          <td>{{result.email}}</td>
+          <td>{{result.room_number}}</td>
+          <%if(data.role >= 2){%>
+          <td><button type="button" class="btn btn-warning btn-sm" ng-click="onedit(result)" data-toggle="modal" data-target="#myModal">ویرایش</button></td>
+          <td><button type="button" class="btn btn-danger btn-sm" ng-click="ondelete(result)">حذف</button></td>
+          <%}%>
 
-        </tr>
-        </tbody>
-    </table>
+      </tr>
+      </tbody>
+  </table>
+</div>

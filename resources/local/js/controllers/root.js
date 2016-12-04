@@ -58,6 +58,7 @@ _root.config(function ($routeProvider) {
                     $scope.query[index].inside_phone_number = $scope.edit_form.inside_phone_number;
                     $scope.query[index].email = $scope.edit_form.email;
                     $scope.query[index].room_number = $scope.edit_form.room_number;
+                    document.getElementById("close").click();
                     toastr["info"]("تغییرات با موفقیت ثبت شد.","ویرایش");
 
                 }).error(function(err){

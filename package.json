@@ -26,6 +26,7 @@
     "gulp-watch": "*",
     "mongoose": "^4.5.7",
     "morgan": "~1.7.0",
+    "persianjs": "^0.3.0",
     "serve-favicon": "~2.3.0",
     "validator": "^6.1.0"
   }

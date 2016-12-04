@@ -1,25 +1,26 @@
-
-<table class="table table-striped table-hover ">
-    <thead>
-    <tr>
-        <th>نام/نام خانوادگی</th>
-        <th>سمت</th>
-        <th>شماره تلفن</th>
-        <th>شماره داخلی</th>
-        <th>ایمیل</th>
-        <th>شماره اتاق</th>
-        <th>حذف</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="result in favoriteData">
-        <td>{{result.name}}</td>
-        <td>{{result.departmenet}}</td>
-        <td>{{result.phone_number}}</td>
-        <td>{{result.inside_phone_number}}</td>
-        <td>{{result.email}}</td>
-        <td>{{result.room_number}}</td>
-        <td><button type="button" class="btn btn-danger btn-sm"  ng-click="on_delete(result)">حذف</button></td>
-    </tr>
-    </tbody>
-</table>
+<div class="table-responsive">
+  <table class="table table-striped table-hover ">
+      <thead>
+      <tr>
+          <th>نام/نام خانوادگی</th>
+          <th>سمت</th>
+          <th>شماره تلفن</th>
+          <th>شماره داخلی</th>
+          <th>ایمیل</th>
+          <th>شماره اتاق</th>
+          <th>حذف</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="result in favoriteData">
+          <td>{{result.name}}</td>
+          <td>{{result.departmenet}}</td>
+          <td>{{result.phone_number}}</td>
+          <td>{{result.inside_phone_number}}</td>
+          <td>{{result.email}}</td>
+          <td>{{result.room_number}}</td>
+          <td><button type="button" class="btn btn-danger btn-sm"  ng-click="on_delete(result)">حذف</button></td>
+      </tr>
+      </tbody>
+  </table>
+</div>
