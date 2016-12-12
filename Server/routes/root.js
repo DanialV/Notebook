@@ -1,7 +1,7 @@
 /**
  * Created by danial on 7/27/16.
  */
-// catch 404 and forward to error handler
+ //PLANNING: change the Site UI
 var error_handel = require("djs");
 var route_permission = {
     '/favorite':1,
@@ -12,12 +12,14 @@ var route_permission = {
     '/logout':1,
     '/main_content' : 0,
     '/login':0,
+    '/forget_password':0,
     '/enroll':0,
     '/add_phone':2,
     '/favicon.ico':0,
     '/user_management':0,
     '/edit_user':2,
-    '/deluser':2
+    '/deluser':2,
+    '/logs':2
 };
 module.exports = function(app){
     app.route('/*').get(function(req,res,next){
@@ -28,11 +30,15 @@ module.exports = function(app){
           next();
         }
         else{
+          //security error
+          console.monog('security',req.url)
           error_handel.error_render(res,403, "اجازه مشاهده ی چنین صفحه ای رو ندارید!");
         }
       }
       else{
         // 404
+        //info logs
+          console.monog('info','Not Found '+req.url)
         error_handel.error_render(res,404, "چنین صفحه ای وجود ندارد!");
       }
     }).post(function(req,res,next){
@@ -43,11 +49,13 @@ module.exports = function(app){
           next();
         }
         else{
+          console.monog('security',req.url)
           error_handel.error_render(res,403, "اجازه مشاهده ی چنین صفحه ای رو ندارید!");
         }
       }
       else{
         // 404
+        console.monog('info','Not Found '+req.url)
         error_handel.error_render(res,404, "چنین صفحه ای وجود ندارد!");
       }
     });

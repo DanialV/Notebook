@@ -2,6 +2,7 @@
  * Created by danial on 9/12/16.
  */
 var db = require("mongo_schemas");
+var persian = require('persianjs')
 module.exports = {
     get:function(req,res){
         var permission = (typeof req.session.role == 'undefined')?0:req.session.role;
@@ -22,6 +23,7 @@ module.exports = {
     },
     post:function(req,res){
         let clean_data = (typeof req.body.search == 'undefined')?'':req.body.search.replace(/[.?*+^$[\]\\(){}|-]/g, "\\$&");
+        clean_data = persian(clean_data).englishNumber().arabicChar().toString()
         if(clean_data == ''){
             res.send({});
         }
@@ -54,8 +56,6 @@ module.exports = {
             tt[db_field] = new RegExp(clean_data,'i');
             main_q.$or.push(tt);
           })
-
-
             db.phones.find(main_q).sort({'name': 'asc'}).lean().exec(function(err,info){
                 if(err){
                     console.mongo(err);

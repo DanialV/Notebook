@@ -1,6 +1,7 @@
 /**
  * Created by danial on 7/28/16.
  */
+ //TODO: add Logs post route and user edit profile
 var _route = require("djs");
 var get_routes = [
     'favorite',
@@ -9,7 +10,8 @@ var get_routes = [
     'add_phone',
     'enroll',
     'logout',
-    'user_management'
+    'user_management',
+    'logs'
 ];
 var post_route = [
     'favorite',
@@ -22,6 +24,7 @@ var post_route = [
     'user_management',
     'edit_user',
     'deluser',
+    'forget_password'
 ];
 module.exports = function(app){
     app.route('/').get(require('./core').get).post(require('./core').post);

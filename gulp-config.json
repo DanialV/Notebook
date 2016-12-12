@@ -20,6 +20,7 @@
      "resources/local/js/controllers/add_phone.js",
      "resources/local/js/controllers/enroll.js",
      "resources/local/js/controllers/favorite.js",
-     "resources/local/js/controllers/user_management.js"
+     "resources/local/js/controllers/user_management.js",
+     "resources/local/js/controllers/logs.js"
    ]
 }

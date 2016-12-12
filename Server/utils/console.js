@@ -1,6 +1,7 @@
 /**
  * Created by danial on 8/26/16.
  */
+ //TODO:console mongo should change now it get two pramater for logs type and error
 var db = require("mongo_schemas");
 console.error = function(text){
     var date = new Date();

@@ -33,5 +33,16 @@ _login.config(function ($routeProvider) {
                         toastr.error( "اشکال داخلی سرور","خطا");
                     })
             };
+          $scope.onforgot = function(){
+              $http({
+                url:'/forget_password',
+                type:'post',
+                data:{email:$scope.forget_email}
+              }).success(function(res){
+                toastr.succes('لینک بازیابی اطلاعات با موفقیت به ایمیل شما ارسال شد.')
+              }).error(function(err){
+
+              });
+          };
         }});
 });

@@ -14,8 +14,8 @@ module.exports.post = function(req, res) {
             console.mongo(err);
             res.sendStatus(500);
         } else {
-            data.name = (typeof _data.name != 'undefined') ? persian(_data.name).arabicChar().toString() : _data.name;
-            data.departmenet = (typeof _data.departmenet != 'undefined') ? persian(_data.departmenet).arabicChar().toString() : _data.departmenet;
+            data.name = (typeof _data.name != 'undefined') ? persian(_data.name).arabicChar().englishNumber().toString() : _data.name;
+            data.departmenet = (typeof _data.departmenet != 'undefined') ? persian(_data.departmenet).arabicChar().englishNumber().toString() : _data.departmenet;
             data.phone_number = (typeof _data.phone_number != 'undefined') ? persian(_data.phone_number).englishNumber().toString() : _data.phone_number;
             data.inside_phone_number = (typeof _data.inside_phone_number != 'undefined') ? persian(_data.inside_phone_number).englishNumber().toString() : _data.inside_phone_number;
             data.email = _data.email;

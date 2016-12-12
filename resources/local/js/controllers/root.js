@@ -1,6 +1,8 @@
 /**
  * Created by danial on 9/6/16.
  */
+//TODO: All logs should change add info logs and error logs
+//PLANNING: permissions should change add premission for  see just phone number
 _root = angular.module('root',['ngRoute','angularSpinner']);
 _root.config(function ($routeProvider) {
     $routeProvider.when('/', {
