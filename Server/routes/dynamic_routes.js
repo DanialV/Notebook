@@ -4,7 +4,8 @@
  //TODO: add Logs post route and user edit profile
 var _route = require("djs");
 var get_routes = [
-    'get_menu'
+    'get_menu',
+    'main_content'
 ];
 var post_route = [
     'favorite',
@@ -27,5 +28,4 @@ module.exports = function(app){
     post_route.forEach(function(index){
         _route.file_post(app,index);
     });
-
 };

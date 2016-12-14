@@ -5,21 +5,7 @@ var db = require("mongo_schemas");
 var persian = require('persianjs')
 module.exports = {
     get:function(req,res){
-        var permission = (typeof req.session.role == 'undefined')?0:req.session.role;
-        if(typeof req.session.role == 'undefined'){
-            res.render('index',{data : {
-                version : global.init.version ,
-                role : permission
-            }});
-        }
-        else{
-            res.render('index',{data : {
-                version : global.init.version ,
-                role : permission,
-                username : req.session.username,
-                name : req.session.name
-            }});
-        }
+        res.render('index');
     },
     post:function(req,res){
         let clean_data = (typeof req.body.search == 'undefined')?'':req.body.search.replace(/[.?*+^$[\]\\(){}|-]/g, "\\$&");

@@ -19,6 +19,18 @@ _root.config(function ($routeProvider) {
             $scope._edit_form = {};
             $scope.delete_row = true;
             usSpinnerService.stop('spinner');
+            $http({
+              url:'/main_content',
+              method:'GET'
+            }).success(function(data){
+                $scope.table_header = data.table_header
+                console.log($scope.table_header[0])
+                $scope.favorite = "<a href='' ng-click='onfavorite(result)'><span class='glyphicon glyphicon-plus' aria-hidden='true' style='color: #ff7224;text-shadow: 1px 1px 1px #ccc;font-size: 1.5em;right: 10px;'></span></a>"
+                $scope.edit_buttom = "<button type='button' class='btn btn-warning btn-sm' ng-click='onedit(result)' data-toggle='modal' data-target='#myModal'>ویرایش</button>"
+                $scope.delete_buttom="<button type='button' class='btn btn-danger btn-sm' ng-click='ondelete(result)'>حذف</button>"
+            }).error(function(err){
+
+            });
             $scope.onsubmit = function(){
                 $scope.delete_row = true;
                 usSpinnerService.stop('spinner');
