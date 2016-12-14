@@ -5,7 +5,6 @@ logs.config(function($routeProvider){
     templateUrl:'views/logs.html',
     controller: function($scope,$http){
       $scope.setActive('logs');
-      console.log("dad")
       $scope.HeaderName('لاگ های سرور');
       $scope.body = 'fade-handel';
       $scope.header = 'fade-handel';

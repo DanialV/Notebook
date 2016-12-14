@@ -5,7 +5,8 @@
 var _route = require("djs");
 var get_routes = [
     'get_menu',
-    'main_content'
+    'main_content',
+    'logout'
 ];
 var post_route = [
     'favorite',

@@ -10,6 +10,7 @@
      "resources/dist/bootstrap/dist/js/bootstrap.js",
      "resources/dist/angular/angular.min.js",
      "resources/dist/angular-route/angular-route.js",
+     "resources/dist/angular-bind-html-compile/angular-bind-html-compile.min.js",
      "resources/dist/angular-cookies/angular-cookies.js",
      "resources/dist/spin.js/spin.min.js",
      "resources/dist/angular-spinner/angular-spinner.min.js",

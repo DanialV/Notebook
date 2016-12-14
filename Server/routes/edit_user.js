@@ -71,7 +71,6 @@ module.exports.post = function(req,res){
               callback(err,null);
             }
             else{
-              console.log("done");
               callback(null,"ok");
             }
           });

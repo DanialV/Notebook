@@ -3,5 +3,5 @@
  */
 module.exports.get = function (req,res) {
   req.session = null;
-    res.redirect('/');
+  res.send("ok")
 };

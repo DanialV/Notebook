@@ -26,7 +26,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
       <ul class="nav navbar-nav">
         <li ng-repeat="index in menu" ng-class="{{index.class}}">
-          <a  href="{{index.href}}" ng-bind="::index.value">
+          <a  href="{{index.href}}" ng-bind="index.value">
             <i class="icon-chevron-sign-up icon-large"></i>
           </a>
         </li>
@@ -35,7 +35,7 @@
           <li class="dropdown">
               <a href="" class="dropdown-toggle" data-toggle="dropdown">
                   <span class="glyphicon glyphicon-user"></span> 
-                  <strong ng-bind="::user_session"></strong>
+                  <strong ng-bind="user_session"></strong>
                   <span class="glyphicon glyphicon-chevron-down"></span>
               </a>
               <ul class="dropdown-menu dropdown-menu-right pull-left" >

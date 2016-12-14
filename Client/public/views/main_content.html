@@ -77,15 +77,15 @@
       </thead>
       <tbody>
       <tr ng-repeat="result in query" >
-          <td ng-bind-html="favorite"></td>
+          <td bind-html-compile="favorite"></td>
           <td ng-bind="result.name"></td>
           <td ng-bind="result.departmenet"></td>
           <td ng-bind="result.phone_number"></td>
           <td ng-bind="result.inside_phone_number"></td>
           <td ng-bind="result.email"></td>
           <td ng-bind="result.room_number"></td>
-          <td ng-bind-html="edit_buttom"></td>
-          <td ng-bind-html="delete_buttom"></td>
+          <td bind-html-compile="edit_buttom"></td>
+          <td bind-html-compile="delete_buttom"></td>
       </tr>
 
       </tbody>

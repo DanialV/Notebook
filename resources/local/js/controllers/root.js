@@ -3,7 +3,7 @@
  */
 //TODO: All logs should change add info logs and error logs
 //PLANNING: permissions should change add premission for  see just phone number
-_root = angular.module('root',['ngRoute','angularSpinner']);
+_root = angular.module('root',['ngRoute','angularSpinner','angular-bind-html-compile']);
 _root.config(function ($routeProvider) {
     $routeProvider.when('/', {
         templateUrl: 'views/main_content.html'
@@ -24,7 +24,6 @@ _root.config(function ($routeProvider) {
               method:'GET'
             }).success(function(data){
                 $scope.table_header = data.table_header
-                console.log($scope.table_header[0])
                 $scope.favorite = "<a href='' ng-click='onfavorite(result)'><span class='glyphicon glyphicon-plus' aria-hidden='true' style='color: #ff7224;text-shadow: 1px 1px 1px #ccc;font-size: 1.5em;right: 10px;'></span></a>"
                 $scope.edit_buttom = "<button type='button' class='btn btn-warning btn-sm' ng-click='onedit(result)' data-toggle='modal' data-target='#myModal'>ویرایش</button>"
                 $scope.delete_buttom="<button type='button' class='btn btn-danger btn-sm' ng-click='ondelete(result)'>حذف</button>"

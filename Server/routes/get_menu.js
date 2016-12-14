@@ -1,7 +1,7 @@
 let db = require('mongo_schemas')
 let async = require('async')
 module.exports.get = function(req,res){
-    if (req.session == null) {
+    if (typeof req.session.username == 'undefined') {
         let data = [{
             'href': '#/login',
             'class': 'loginActive',

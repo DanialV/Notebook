@@ -1,11 +1,17 @@
 /**
  * Created by danial on 9/5/16.
  */
-myapp = angular.module('sadjad118', ['root','add_phone','login','enroll','favorite','user_management','logs']);
+myapp = angular.module('sadjad118', ['root', 'add_phone', 'login', 'enroll', 'favorite', 'user_management', 'logs']);
 myapp.config(function($routeProvider) {
-    $routeProvider.otherwise({templateUrl: 'error'})
+    $routeProvider.otherwise({
+        templateUrl: 'error'
+    })
 });
-myapp.controller("body_controller",function($scope,$http){
+myapp.controller("body_controller", function($scope, $http,$location) {
+    $scope.set_menu = function(alldata){
+      $scope.menu = alldata.data
+      $scope.user_session = alldata.username
+    }
     $scope.toaster = toastr.options = {
         "closeButton": true,
         "debug": false,
@@ -24,24 +30,22 @@ myapp.controller("body_controller",function($scope,$http){
         "hideMethod": "fadeOut"
     };
     $http({
-      url:'/get_menu',
-      type:'GET'
-    }).success(function(alldata){
-      $scope.menu = alldata.data
-      $scope.user_session = alldata.username
-      $scope.version = alldata.version
-      console.log(version)
-    }).error(function(err){
-      toastr.error( "اشکال داخلی سرور","خطا");
+        url: '/get_menu',
+        type: 'GET'
+    }).success(function(alldata) {
+        $scope.set_menu(alldata)
+        $scope.version = alldata.version
+    }).error(function(err) {
+        toastr.error("اشکال داخلی سرور", "خطا");
     });
-    $scope.setActive = function(type){
+    $scope.setActive = function(type) {
         $scope.loginActive = '';
         $scope.enrollActive = '';
         $scope.addphoneActive = '';
         $scope.favoriteActive = '';
         $scope.usermanagementActive = '';
         $scope.logsActive = '';
-        $scope[type+'Active'] = 'active';
+        $scope[type + 'Active'] = 'active';
     };
     $scope.condtions = null;
     $scope.stu_url = "http://stu.sadjad.ac.ir";
@@ -49,11 +53,27 @@ myapp.controller("body_controller",function($scope,$http){
     $scope.pooya_url = "http://pooya.sadjad.ac.ir";
     $scope.Header = "جستجوی شماره تلفن"
     $scope.computer_center = "http://sadjad.ac.ir/IT%20center.aspx";
-    $scope.HeaderName = function(name){
+    $scope.HeaderName = function(name) {
         $scope.Header = name;
     };
-    $scope.logout = function(){
-        window.location = '/logout';
+    $scope.logout = function() {
+        $http({
+            url: '/logout',
+            method: 'GET',
+
+        }).success(function(res) {
+            $http({
+                url: '/get_menu',
+                type: 'GET'
+            }).success(function(alldata) {
+                $scope.set_menu(alldata)
+                $location.path('/')
+            }).error(function(err) {
+                toastr.error("اشکال داخلی سرور", "خطا");
+            });
+        }).error(function(err) {
+            toastr.error("اشکال داخلی سرور", "خطا");
+        });
     };
 
 });
