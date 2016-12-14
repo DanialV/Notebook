@@ -4,7 +4,7 @@
 _add_phone = angular.module('add_phone',['ngRoute']);
 _add_phone.config(function ($routeProvider) {
     $routeProvider.when('/add_phone',{
-            templateUrl: 'add_phone'
+            templateUrl: 'views/add_phone.html'
             ,controller:function($scope,$http){
                 $scope.setActive('addphone');
                 $scope.HeaderName('اضافه کردن شماره تلفن');

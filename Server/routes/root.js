@@ -19,46 +19,48 @@ var route_permission = {
     '/user_management':0,
     '/edit_user':2,
     '/deluser':2,
-    '/logs':2
+    '/logs':2,
+    '/get_menu':0
 };
 module.exports = function(app){
-    app.route('/*').get(function(req,res,next){
-      var permission = (typeof  req.session.role == 'undefined')?0:req.session.role;
-      if(route_permission.hasOwnProperty(req.url)){
-        //user permission
-        if(permission >= route_permission[req.url]){
-          next();
-        }
-        else{
-          //security error
-          console.monog('security',req.url)
-          error_handel.error_render(res,403, "اجازه مشاهده ی چنین صفحه ای رو ندارید!");
-        }
-      }
-      else{
-        // 404
-        //info logs
-          console.monog('info','Not Found '+req.url)
-        error_handel.error_render(res,404, "چنین صفحه ای وجود ندارد!");
-      }
-    }).post(function(req,res,next){
-      var permission = (typeof  req.session.role == 'undefined')?0:req.session.role;
-      if(route_permission.hasOwnProperty(req.url)){
-        //user permission
-        if(permission >= route_permission[req.url]){
-          next();
-        }
-        else{
-          console.monog('security',req.url)
-          error_handel.error_render(res,403, "اجازه مشاهده ی چنین صفحه ای رو ندارید!");
-        }
-      }
-      else{
-        // 404
-        console.monog('info','Not Found '+req.url)
-        error_handel.error_render(res,404, "چنین صفحه ای وجود ندارد!");
-      }
-    });
+    // app.route('/*').get(function(req,res,next){
+    //   var permission = (typeof  req.session.role == 'undefined')?0:req.session.role;
+    //   if(route_permission.hasOwnProperty(req.url)){
+    //     //user permission
+    //     if(permission >= route_permission[req.url]){
+    //       next();
+    //     }
+    //     else{
+    //       //security error
+    //       console.monog('security',req.url)
+    //       error_handel.error_render(res,403, "اجازه مشاهده ی چنین صفحه ای رو ندارید!");
+    //     }
+    //   }
+    //   else{
+    //     // 404
+    //     //info logs
+    //       console.monog('info','Not Found '+req.url)
+    //       console.log(req.url);
+    //     error_handel.error_render(res,404, "چنین صفحه ای وجود ندارد!");
+    //   }
+    // }).post(function(req,res,next){
+    //   var permission = (typeof  req.session.role == 'undefined')?0:req.session.role;
+    //   if(route_permission.hasOwnProperty(req.url)){
+    //     //user permission
+    //     if(permission >= route_permission[req.url]){
+    //       next();
+    //     }
+    //     else{
+    //       console.monog('security',req.url)
+    //       error_handel.error_render(res,403, "اجازه مشاهده ی چنین صفحه ای رو ندارید!");
+    //     }
+    //   }
+    //   else{
+    //     // 404
+    //     console.monog('info','Not Found '+req.url)
+    //     error_handel.error_render(res,404, "چنین صفحه ای وجود ندارد!");
+    //   }
+    // });
     require('./dynamic_routes')(app);
 // error handlers
 

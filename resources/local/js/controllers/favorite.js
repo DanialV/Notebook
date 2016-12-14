@@ -4,7 +4,7 @@
 _favorite = angular.module('favorite',['ngRoute']);
 _favorite.config(function($routeProvider){
     $routeProvider.when('/favorite',{
-       templateUrl:'favorite',
+       templateUrl:'views/favorite.html',
        controller : function($scope,$http){
            $scope.setActive('favorite');
            $scope.HeaderName('شماره های علاقمند');

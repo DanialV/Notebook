@@ -1,7 +1,7 @@
 var changeuser = angular.module('changeuser',['ngRoute']);
 changeuser.config(function($routeProvider){
     $routeProvider.when('/changeuser',{
-        templateUrl: 'changeuser',
+        templateUrl: 'views/changeuser.html',
         controller : function($scope,$http){
           $scope.HeaderName('تغییر اطلاعات کاربری');
           $scope.body = 'fade-handel';

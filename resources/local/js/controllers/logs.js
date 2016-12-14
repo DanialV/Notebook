@@ -2,7 +2,7 @@
 logs = angular.module('logs',['ngRoute']);
 logs.config(function($routeProvider){
   $routeProvider.when('/logs',{
-    templateUrl:'logs',
+    templateUrl:'views/logs.html',
     controller: function($scope,$http){
       $scope.setActive('logs');
       console.log("dad")

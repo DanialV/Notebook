@@ -4,7 +4,7 @@
 _enroll = angular.module('enroll',['ngRoute']);
 _enroll.config(function($routeProvider){
     $routeProvider.when('/enroll',{
-        templateUrl : 'enroll',
+        templateUrl : 'views/enroll.html',
         controller:function($scope,$http){
             $scope.setActive('enroll');
             $scope.HeaderName('ثبت نام');

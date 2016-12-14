@@ -5,7 +5,7 @@ myapp = angular.module('sadjad118', ['root','add_phone','login','enroll','favori
 myapp.config(function($routeProvider) {
     $routeProvider.otherwise({templateUrl: 'error'})
 });
-myapp.controller("body_controller",function($scope,$route){
+myapp.controller("body_controller",function($scope,$http){
     $scope.toaster = toastr.options = {
         "closeButton": true,
         "debug": false,
@@ -23,6 +23,17 @@ myapp.controller("body_controller",function($scope,$route){
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     };
+    $http({
+      url:'/get_menu',
+      type:'GET'
+    }).success(function(alldata){
+      $scope.menu = alldata.data
+      $scope.user_session = alldata.username
+      $scope.version = alldata.version
+      console.log(version)
+    }).error(function(err){
+      toastr.error( "اشکال داخلی سرور","خطا");
+    });
     $scope.setActive = function(type){
         $scope.loginActive = '';
         $scope.enrollActive = '';
@@ -44,4 +55,5 @@ myapp.controller("body_controller",function($scope,$route){
     $scope.logout = function(){
         window.location = '/logout';
     };
+
 });

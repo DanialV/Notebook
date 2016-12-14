@@ -4,7 +4,7 @@
 _login = angular.module('login',['ngRoute']);
 _login.config(function ($routeProvider) {
     $routeProvider.when('/login', {
-        templateUrl: 'login'
+        templateUrl: 'views/login.html'
         ,controller:function ($scope,$http,$timeout) {
             $scope.setActive('login');
             $scope.HeaderName('ورود');

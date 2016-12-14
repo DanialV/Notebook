@@ -6,7 +6,7 @@
 _root = angular.module('root',['ngRoute','angularSpinner']);
 _root.config(function ($routeProvider) {
     $routeProvider.when('/', {
-        templateUrl: 'main_content'
+        templateUrl: 'views/main_content.html'
         ,controller:function ($scope,$http,usSpinnerService) {
             $scope.setActive('');
             $scope.HeaderName('جستجوی شماره تلفن');

@@ -4,7 +4,7 @@
 var user_management = angular.module('user_management',['ngRoute']);
 user_management.config(function($routeProvider){
   $routeProvider.when('/user_management',{
-    templateUrl:'user_management',
+    templateUrl:'views/user_management.html',
     controller:function($scope,$http){
       $scope.setActive('usermanagement');
       $scope.HeaderName('مدیریت کاربران');

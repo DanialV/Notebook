@@ -39,6 +39,9 @@ db.phones.find(function(err,info){
       });
   },function(err){
       if(err)console.log(err);
-      else console.log("Done");
+      else{
+        console.log("Done");
+        mongoose.connection.close()
+      }
   });
 });

@@ -18,7 +18,7 @@ module.exports.post = function(req, res) {
         save_res
     ], function(err, result) {
         if (err) {
-            res.statusCode = 500;
+            console.mongo('error',err);
             res.sendStatus(500);
         } else {
             res.send(result);
@@ -35,7 +35,10 @@ module.exports.post = function(req, res) {
             } else {
                 if (number == 0) {
                     callback(null, "ok");
-                } else callback(null, "duplicate_name");
+                } else{
+                  console.mongo('error','duplicate name in add phone number')
+                  callback(null, "duplicate_name");
+                }
             }
         });
     }
@@ -53,6 +56,7 @@ module.exports.post = function(req, res) {
                         if (number == 0) {
                             callback(null, "ok");
                         } else {
+                            console.mongo('error','duplicate inside number in add phone number')
                             callback(null, "duplicate_number");
                         }
                     }
