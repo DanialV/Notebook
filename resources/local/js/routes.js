@@ -67,7 +67,7 @@ myapp.controller("body_controller", function($scope, $http,$location) {
                 type: 'GET'
             }).success(function(alldata) {
                 $scope.set_menu(alldata)
-                $location.path('/')
+                window.location = '/';
             }).error(function(err) {
                 toastr.error("اشکال داخلی سرور", "خطا");
             });

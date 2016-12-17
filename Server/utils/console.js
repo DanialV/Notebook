@@ -8,7 +8,7 @@ console.error = function(text){
     console.log("Date : " + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() +
         " " + date.getHours() + " : " + date.getMinutes() + " : " + date.getSeconds() + " ----> Error : " + text );
 };
-console.mongo = function(text){
+console.mongo = function(type,text){
     var date = new Date();
     var logs = {};
     text = "Date : " + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() +

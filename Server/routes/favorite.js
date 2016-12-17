@@ -74,11 +74,10 @@ module.exports.post = function(req,res){
             }
         });
         function find_user(callback){
-            var name = req.session.username;
+            var name = req.user.username;
             db.users.findOne({username : name},{_id:false}).lean().exec(function(err,_data){
                 if(err){
                     console.mongo(err);
-                    console.error(err);
                     callback(err,null);
                 }
                 else{
@@ -90,7 +89,6 @@ module.exports.post = function(req,res){
             db.phones.find({_id:{$in : favorite}},{}).lean().exec(function(err,data){
                 if(err){
                     console.mongo(err);
-                    console.error(err);
                     callback(err,null);
                 }
                 else{

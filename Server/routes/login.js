@@ -33,7 +33,7 @@ module.exports.post = function(req,res){
             callback(null,false);
         }
         else{
-            db.users.findOne({username : data.username},{_id:false}).lean().exec(function(err,user_data){
+            db.users.findOne({username : data.username},{}).lean().exec(function(err,user_data){
                 if(err){
                     console.mongo(err);
                     callback(err,null);
@@ -46,9 +46,7 @@ module.exports.post = function(req,res){
                        }
                         else{
                            if(hash_res){
-                               req.session.username = data.username;
-                               req.session.role = user_data.role;
-                               req.session.name = user_data.first_name + ' ' + user_data.last_name;
+                               req.session._id = user_data._id;
                                callback(null,true);
                            }
                            else callback(null,false);

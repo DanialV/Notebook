@@ -8,6 +8,14 @@ module.exports = {
         res.render('index');
     },
     post:function(req,res){
+        let show = {}
+        if(typeof req.user == 'undefined'){
+            show.phone_number = false;
+        }
+        else{
+          if(req.user.permissions.indexOf('phone_number') == -1)
+            show.phone_number = false;
+        }
         let clean_data = (typeof req.body.search == 'undefined')?'':req.body.search.replace(/[.?*+^$[\]\\(){}|-]/g, "\\$&");
         clean_data = persian(clean_data).englishNumber().arabicChar().toString()
         if(clean_data == ''){
@@ -42,12 +50,11 @@ module.exports = {
             tt[db_field] = new RegExp(clean_data,'i');
             main_q.$or.push(tt);
           })
-            db.phones.find(main_q).sort({'name': 'asc'}).lean().exec(function(err,info){
+            db.phones.find(main_q,show).sort({'name': 'asc'}).lean().exec(function(err,info){
                 if(err){
                     console.mongo(err);
-                    // res.statusCode = 500;
-                    // res.sendStatus(500);
-                    res.satuts(500).json({ err : true });
+                    res.statusCode = 500;
+                    res.sendStatus(500);
                 }
                 else{
                     res.send(info);

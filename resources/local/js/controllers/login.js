@@ -24,7 +24,7 @@ _login.config(function($routeProvider) {
                                 url: '/get_menu',
                                 type: 'GET'
                             }).success(function(alldata) {
-                                $scope.set_menu(alldata)
+                                $scope.set_menu(alldata);
                                 $location.path('/');
                             }).error(function(err) {
                                 toastr.error("اشکال داخلی سرور", "خطا");

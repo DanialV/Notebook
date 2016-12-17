@@ -8,6 +8,7 @@ _root.config(function ($routeProvider) {
     $routeProvider.when('/', {
         templateUrl: 'views/main_content.html'
         ,controller:function ($scope,$http,usSpinnerService) {
+            console.log("check");
             $scope.setActive('');
             $scope.HeaderName('جستجوی شماره تلفن');
             $scope.body = 'fade-handel';
@@ -23,10 +24,16 @@ _root.config(function ($routeProvider) {
               url:'/main_content',
               method:'GET'
             }).success(function(data){
-                $scope.table_header = data.table_header
-                $scope.favorite = "<a href='' ng-click='onfavorite(result)'><span class='glyphicon glyphicon-plus' aria-hidden='true' style='color: #ff7224;text-shadow: 1px 1px 1px #ccc;font-size: 1.5em;right: 10px;'></span></a>"
-                $scope.edit_buttom = "<button type='button' class='btn btn-warning btn-sm' ng-click='onedit(result)' data-toggle='modal' data-target='#myModal'>ویرایش</button>"
-                $scope.delete_buttom="<button type='button' class='btn btn-danger btn-sm' ng-click='ondelete(result)'>حذف</button>"
+                if(data != null){
+                  if(data.permissions.indexOf('phone_number') != -1)$scope.phone_number = true;
+                  if(data.permissions.indexOf('favorite_list') != -1)
+                    $scope.favorite = "<a href='' ng-click='onfavorite(result)'><span class='glyphicon glyphicon-plus' aria-hidden='true' style='color: #ff7224;text-shadow: 1px 1px 1px #ccc;font-size: 1.5em;right: 10px;'></span></a>"
+                  if(data.permissions.indexOf('edit_phone') != -1)
+                    $scope.edit_buttom = "<button type='button' class='btn btn-warning btn-sm' ng-click='onedit(result)' data-toggle='modal' data-target='#myModal'>ویرایش</button>"
+                  if(data.permissions.indexOf('delete_phone') != -1)
+                    $scope.delete_buttom="<button type='button' class='btn btn-danger btn-sm' ng-click='ondelete(result)'>حذف</button>"
+                }
+
             }).error(function(err){
 
             });
