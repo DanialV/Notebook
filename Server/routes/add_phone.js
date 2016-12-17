@@ -4,11 +4,10 @@
 var db = require("mongo_schemas");
 var async = require("async");
 var persian_number = require('persianjs');
+var checkP = require('check_permissions');
 module.exports.post = function(req, res) {
-    if(req.user == 'undefined'){
-      
-    }
-    var data = req.body;
+    if(checkP(req,'add_phone'))return;
+    let data = req.body;
     if (typeof data.phone_number == 'undefined' || data.phone_number == null)
         data.phone_number = "";
     if (typeof data.inside_phone_number == 'undefined' || data.inside_phone_number == null)
@@ -21,8 +20,8 @@ module.exports.post = function(req, res) {
         save_res
     ], function(err, result) {
         if (err) {
-            console.mongo('error',err);
-            res.sendStatus(500);
+            console.mongo('Error', err);
+            res.status(500);
         } else {
             res.send(result);
         }
@@ -38,9 +37,9 @@ module.exports.post = function(req, res) {
             } else {
                 if (number == 0) {
                     callback(null, "ok");
-                } else{
-                  console.mongo('error','duplicate name in add phone number')
-                  callback(null, "duplicate_name");
+                } else {
+                    console.mongo('error', 'duplicate name in add phone number')
+                    callback(null, "duplicate_name");
                 }
             }
         });
@@ -59,7 +58,7 @@ module.exports.post = function(req, res) {
                         if (number == 0) {
                             callback(null, "ok");
                         } else {
-                            console.mongo('error','duplicate inside number in add phone number')
+                            console.mongo('error', 'duplicate inside number in add phone number')
                             callback(null, "duplicate_number");
                         }
                     }

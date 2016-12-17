@@ -36,7 +36,10 @@ _add_phone.config(function ($routeProvider) {
                                 toastr.error("شماره داخلی در سیستم موجود است.","خطا");
                             }
                         }).error(function(err){
-                            toastr.error( "اشکال داخلی سرور","خطا");
+                            if(err.status == 403){
+                              toastr.error( "دسترسی غیر مجاز","خطا");
+                            }
+                            else toastr.error( "اشکال داخلی سرور","خطا");
                         });
                 };
             }});

@@ -12,10 +12,10 @@ var csrf = require('csurf');
 
 
 
-
 var app = express();
 
 // view engine setup
+//app.set('env','production');
 app.set('views', path.join(__dirname, 'Client/views'));
 app.set('view engine', 'ejs');
 

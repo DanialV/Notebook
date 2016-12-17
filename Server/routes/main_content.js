@@ -23,7 +23,6 @@ module.exports.get = function(req, res) {
           }
           callback();
       },function(){
-        console.log(data);
           res.send(data);
       });
 

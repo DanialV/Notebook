@@ -2,6 +2,7 @@ var db = require("mongo_schemas");
 module.exports.post = function(req,res){
   var id = req.body._id;
   db.users.findOne({_id:id},{},function(err,data){
+    if(checkP(req,'delete_user'))return;
      if(err){
          console.mongo(err);
          res.sendStatus(500);
