@@ -1,7 +1,9 @@
 var db = require("mongo_schemas");
 var bcrypt = require("bcrypt");
 var async = require("async");
+var checkP = require('check_permissions');
 module.exports.post = function(req,res){
+  if(checkP(req,res,'edit_user'))return;
   data = req.body;
   async.waterfall([
     function(callback){

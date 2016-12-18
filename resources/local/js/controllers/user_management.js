@@ -5,7 +5,12 @@ var user_management = angular.module('user_management',['ngRoute']);
 user_management.config(function($routeProvider){
   $routeProvider.when('/user_management',{
     templateUrl:'views/user_management.html',
-    controller:function($scope,$http){
+    controller:function($scope,$http,$location){
+      if ($scope.permissions.indexOf('edit_user') == -1 && $scope.permissions.indexOf('delete_user') == -1) {
+          $scope.error.error_status = 403;
+          $scope.error.error_message = "اجازه دسترسی به صفحه مورد نظر را ندارید!";
+          return $location.path('/error');
+      }
       $scope.setActive('usermanagement');
       $scope.HeaderName('مدیریت کاربران');
       $scope.body = 'fade-handel';
@@ -15,8 +20,7 @@ user_management.config(function($routeProvider){
       $scope._edit_user = {};
       $http({
         url:'/user_management',
-        method:'POST',
-        data:{}
+        method:'GET'
       }).success(function(res){
         $scope.user_data = res;
 
@@ -72,6 +76,9 @@ user_management.config(function($routeProvider){
               else if(res == "PError")   toastr.error( "رمز عبور مطابقت ندارد.",'خطا');
 
           }).error(function(err){
+            if(err.status == 403){
+                return toastr.error( "دسترسی غیر مجاز","خطا");
+            }
             toastr.error( "اشکال داخلی سرور","خطا");
           });
         }
@@ -88,6 +95,9 @@ user_management.config(function($routeProvider){
             toastr["warning"]("کاربر با موفقیت حذف شد.","حذف");
           }
         }).error(function(err){
+          if(err.status == 403){
+              return toastr.error( "دسترسی غیر مجاز","خطا");
+          }
           toastr.error( "اشکال داخلی سرور","خطا");
         });
       }

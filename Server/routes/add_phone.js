@@ -6,7 +6,7 @@ var async = require("async");
 var persian_number = require('persianjs');
 var checkP = require('check_permissions');
 module.exports.post = function(req, res) {
-    if(checkP(req,'add_phone'))return;
+    if(checkP(req,res,'add_phone'))return;
     let data = req.body;
     if (typeof data.phone_number == 'undefined' || data.phone_number == null)
         data.phone_number = "";

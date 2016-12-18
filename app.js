@@ -27,9 +27,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'Client/public')));
+
 app.use(session({
     name: 'sadjad118_session',
-    secret: 'kytddkhovoqyfjgfhch'
+    secret: 'kytddkhovoqy'
 }));
 app.use(csrf({
     cookie: true,

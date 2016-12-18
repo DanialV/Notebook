@@ -3,5 +3,5 @@
  */
 module.exports.get = function (req,res) {
   req.session = null;
-  res.send("ok")
+  res.json({'status':true});
 };

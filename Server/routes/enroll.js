@@ -50,7 +50,6 @@ module.exports.post = function(req,res){
     }
     function save_result(_email,callback){
         if(_email == "ok"){
-            data.role = 1;
             bcrypt.hash(data.password,10,function(err,hash){
                 if(err){
                     console.mongo(err);
@@ -59,6 +58,7 @@ module.exports.post = function(req,res){
                 else{
                     data.password = hash;
                     data.favorite = [];
+                    data.premissions = ['favorite_list'];
                     var saveModule = new db.users(data);
                     saveModule.save(function(err){
                         if(err){

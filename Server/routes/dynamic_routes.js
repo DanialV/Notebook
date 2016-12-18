@@ -6,17 +6,17 @@ var _route = require("djs");
 var get_routes = [
     'get_menu',
     'main_content',
-    'logout'
+    'logout',
+    'user_management'
 ];
 var post_route = [
     'favorite',
     'deletenumber',
     'editnumber',
-    'login' ,
+    'login',
     'add_phone',
     'enroll',
     'delfavorite',
-    'user_management',
     'edit_user',
     'deluser',
     'forget_password'

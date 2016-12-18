@@ -4,56 +4,45 @@
 var db = require("mongo_schemas");
 var ascync = require("async");
 var bcrypt = require("bcrypt");
-module.exports.post = function(req,res){
+module.exports.post = function(req, res) {
     var data = req.body;
     ascync.waterfall([
-        check_username,
-        check_password
-    ],function(err,result){
-        if(err){
-            res.statusCode = 500;
-            res.sendStatus(500);
+      function check_password(callback) {
+          db.users.findOne({
+              username: data.username
+          }, {}).lean().exec(function(err, user_data) {
+              if (err) {
+                  console.mongo('Error',err);
+                  return(callback(err, null));
+              }
+              if(user_data == null){
+                console.mongo('Info','Unsuccessful login wrong Username : ' + data.username + ' password: ' + data.password);
+                return(callback(null,{status:false}));
+              }
+              bcrypt.compare(data.password, user_data.password, function(err, hash_res) {
+                  if (err) {
+                      console.mongo('Error',err);
+                      return(callback(err, null));
+                  }
+                  let res_data = {};
+                  if (hash_res) {
+                      console.mongo('Info','Successfull login Username : ' + user_data.username);
+                      req.session._id = user_data._id;
+                      res_data.status = true;
+                      res_data.permissions = user_data.permissions;
+                      return(callback(null, res_data));
+                  }
+                  console.mongo('Info','Unsuccessful login wrong password Username : ' + user_data.username);
+                  res_data.status = false;
+                  return(callback(null, data));
+              });
+          });
+      }
+    ], function(err, result) {
+        if (err) {
+            console.mongo('Error', err);
+            return res.sendStatus(500);
         }
-        else res.send(result);
+        res.send(result);
     });
-    function check_username(callback){
-        db.users.count({username : data.username},function(err,number){
-           if(err){
-               console.mongo(err);
-               callback(err,null);
-           }
-            else{
-               if(number)callback(null,true);
-               else callback(null,false);
-           }
-        });
-    }
-    function check_password(_check_username,callback){
-        if(!_check_username){
-            callback(null,false);
-        }
-        else{
-            db.users.findOne({username : data.username},{}).lean().exec(function(err,user_data){
-                if(err){
-                    console.mongo(err);
-                    callback(err,null);
-                }
-                else{
-                    bcrypt.compare(data.password,user_data.password,function(err,hash_res){
-                       if(err){
-                           console.mongo(err);
-                           callback(err,null);
-                       }
-                        else{
-                           if(hash_res){
-                               req.session._id = user_data._id;
-                               callback(null,true);
-                           }
-                           else callback(null,false);
-                       }
-                    });
-                }
-            });
-        }
-    }
 };

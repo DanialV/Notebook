@@ -3,7 +3,9 @@
  */
 var db  = require("mongo_schemas");
 var async = require("async");
+var checkP = require('check_permissions');
 module.exports.post = function(req,res){
+    if(checkP(req,res,'favorite_list'))return;
     var data = req.body;
     if(data.type == "add"){
         async.waterfall([

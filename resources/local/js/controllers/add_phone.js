@@ -4,8 +4,13 @@
 _add_phone = angular.module('add_phone',['ngRoute']);
 _add_phone.config(function ($routeProvider) {
     $routeProvider.when('/add_phone',{
-            templateUrl: 'views/add_phone.html'
-            ,controller:function($scope,$http){
+            templateUrl: 'views/add_phone.html',
+            controller:function($scope,$http,$location){
+                if($scope.permissions.indexOf('add_phone') == -1){
+                  $scope.error.error_status = 403;
+                  $scope.error.error_message = "اجازه دسترسی به صفحه مورد نظر را ندارید!";
+                  return $location.path('/error');
+                }
                 $scope.setActive('addphone');
                 $scope.HeaderName('اضافه کردن شماره تلفن');
                 $scope.body = 'fade-handel';

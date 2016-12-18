@@ -1,16 +1,21 @@
 /**
  * Created by danial on 9/5/16.
  */
-myapp = angular.module('sadjad118', ['root', 'add_phone', 'login', 'enroll', 'favorite', 'user_management', 'logs']);
+myapp = angular.module('sadjad118', ['error','root', 'add_phone', 'login', 'enroll', 'favorite', 'user_management', 'logs']);
 myapp.config(function($routeProvider) {
     $routeProvider.otherwise({
-        templateUrl: 'error'
-    })
+        templateUrl: 'views/404.html'
+    });
 });
 myapp.controller("body_controller", function($scope, $http,$location) {
+    $scope.error = {};
+    $scope.set_permissions = function(permissions){
+      $scope.permissions = permissions;
+    }
     $scope.set_menu = function(alldata){
       $scope.menu = alldata.data
       $scope.user_session = alldata.username
+      $scope.set_permissions(alldata.premissions);
     }
     $scope.toaster = toastr.options = {
         "closeButton": true,
@@ -33,7 +38,7 @@ myapp.controller("body_controller", function($scope, $http,$location) {
         url: '/get_menu',
         type: 'GET'
     }).success(function(alldata) {
-        $scope.set_menu(alldata)
+        $scope.set_menu(alldata);
         $scope.version = alldata.version
     }).error(function(err) {
         toastr.error("اشکال داخلی سرور", "خطا");
@@ -62,6 +67,7 @@ myapp.controller("body_controller", function($scope, $http,$location) {
             method: 'GET',
 
         }).success(function(res) {
+            $scope.set_permissions([]);
             $http({
                 url: '/get_menu',
                 type: 'GET'

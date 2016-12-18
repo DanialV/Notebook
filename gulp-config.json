@@ -18,6 +18,7 @@
      "resources/local/js/routes.js",
      "resources/local/js/controllers/login.js",
      "resources/local/js/controllers/root.js",
+     "resources/local/js/controllers/error.js",
      "resources/local/js/controllers/add_phone.js",
      "resources/local/js/controllers/enroll.js",
      "resources/local/js/controllers/favorite.js",

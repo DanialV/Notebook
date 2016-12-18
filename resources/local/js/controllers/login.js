@@ -18,7 +18,8 @@ _login.config(function($routeProvider) {
                         data: $scope.user //forms user object
                     })
                     .success(function(data) {
-                        if (data == true) {
+                        if (data.status == true) {
+                            $scope.set_permissions(data.permissions);
                             toastr.success("خوش آمدید.", "ثبت");
                             $http({
                                 url: '/get_menu',
@@ -29,7 +30,7 @@ _login.config(function($routeProvider) {
                             }).error(function(err) {
                                 toastr.error("اشکال داخلی سرور", "خطا");
                             });
-                        } else if (data == false) {
+                        } else if (data.status == false) {
                             toastr.error("نام کاربری یا رمز عبور اشتباه است.", "خطا");
                         }
                     })
