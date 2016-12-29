@@ -22,7 +22,7 @@ _root.config(function($routeProvider) {
             $http({
                 url: '/main_content',
                 method: 'GET'
-            }).success(function(data) {
+            }).then(function(data) {
                 if (data != null) {
                     if (data.permissions.indexOf('phone_number') != -1)
                         $scope.phone_number = true;
@@ -34,7 +34,7 @@ _root.config(function($routeProvider) {
                         $scope.delete_buttom = "<button type='button' class='btn btn-danger btn-sm' ng-click='ondelete(result)'>حذف</button>"
                 }
 
-            }).error(function(err) {
+            },function(err) {
 
             });
             $scope.onsubmit = function() {
@@ -46,10 +46,10 @@ _root.config(function($routeProvider) {
                         method: 'POST',
                         url: '/',
                         data: $scope._data
-                    }).success(function(data) {
+                    }).then(function(data) {
                         usSpinnerService.stop('spinner');
                         $scope.query = data;
-                    }).error(function(err) {
+                    },function(err) {
                         usSpinnerService.stop('spinner');
                         toastr.error("اشکال داخلی سرور", "خطا");
                     });
@@ -70,7 +70,7 @@ _root.config(function($routeProvider) {
                     method: 'post',
                     url: '/editnumber',
                     data: $scope.edit_form
-                }).success(function() {
+                }).then(function() {
                     var index = $scope.query.indexOf($scope._edit_form);
                     $scope.query[index].name = $scope.edit_form.name;
                     $scope.query[index].departmenet = $scope.edit_form.departmenet;
@@ -81,7 +81,7 @@ _root.config(function($routeProvider) {
                     document.getElementById("close").click();
                     toastr["info"]("تغییرات با موفقیت ثبت شد.", "ویرایش");
 
-                }).error(function(err) {
+                },function(err) {
                     toastr.error("اشکال داخلی سرور", "خطا");
                 });
             };
@@ -90,11 +90,11 @@ _root.config(function($routeProvider) {
                     method: 'POST',
                     url: '/deletenumber',
                     data: result
-                }).success(function() {
+                }).then(function() {
                     var index = $scope.query.indexOf(result);
                     $scope.query.splice(index, 1);
                     toastr["warning"]("شماره تلفن با موفقیت حذف شد.", "حذف");
-                }).error(function() {
+                },function() {
                     toastr.error("اشکال داخلی سرور", "خطا");
                 });
             };
@@ -107,12 +107,12 @@ _root.config(function($routeProvider) {
                         id: id,
                         type: "add"
                     }
-                }).success(function(ok) {
+                }).then(function(ok) {
                     if (ok)
                         toastr["info"]("شماره تلفن در لیست مورد علاقه ذخیره شد.", "ثبت");
                     else
                         toastr.error("این شماره در لیست شما قرار دارد.", "خطا");
-                }).error(function() {
+                },function() {
                     toastr.error("اشکال داخلی سرور", "خطا");
                 });
             };

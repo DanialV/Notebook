@@ -37,10 +37,10 @@ myapp.controller("body_controller", function($scope, $http,$location) {
     $http({
         url: '/get_menu',
         type: 'GET'
-    }).success(function(alldata) {
-        $scope.set_menu(alldata);
+    }).then(function(alldata) {
+        $scope.set_menu(alldata.data);
         $scope.version = alldata.version
-    }).error(function(err) {
+    },function(err) {
         toastr.error("اشکال داخلی سرور", "خطا");
     });
     $scope.setActive = function(type) {
@@ -66,18 +66,18 @@ myapp.controller("body_controller", function($scope, $http,$location) {
             url: '/logout',
             method: 'GET',
 
-        }).success(function(res) {
+        }).then(function(res) {
             $scope.set_permissions([]);
             $http({
                 url: '/get_menu',
                 type: 'GET'
-            }).success(function(alldata) {
-                $scope.set_menu(alldata)
+            }).then(function(alldata) {
+                $scope.set_menu(alldata.data)
                 window.location = '/';
-            }).error(function(err) {
+            },function(err) {
                 toastr.error("اشکال داخلی سرور", "خطا");
             });
-        }).error(function(err) {
+        },function(err) {
             toastr.error("اشکال داخلی سرور", "خطا");
         });
     };

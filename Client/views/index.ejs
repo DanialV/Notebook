@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Danial Vafadar Rad|daniel.vafadar@gmail.com">
     <meta property="root" content="http://118.sadjad.ac.ir" />
+    <link href='../css/dep.css' rel='stylesheet' type='text/css'>
     <link href='../css/app.css' rel='stylesheet' type='text/css'>
 </head>
 
@@ -23,12 +24,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-            <a id="main_page" class="navbar-brand" style="padding:10px" href="#/"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> <span style="margin-top:10px">جستجوگر شماره تلفن ۱۱۸</span></a>
+            <a id="main_page" class="navbar-brand" style="padding:10px" href="#!/"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> <span style="margin-top:10px">جستجوگر شماره تلفن ۱۱۸</span></a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav">
                 <li ng-repeat="index in menu" ng-class="{{index.class}}">
-                    <a href="{{index.href}}" ng-bind="index.value">
+                    <a ng-href="{{index.href}}" ng-bind="index.value">
                         <i class="icon-chevron-sign-up icon-large"></i>
                     </a>
                 </li>
@@ -106,7 +107,8 @@
         </div>
     </nav>
 </body>
-<script type="application/javascript" src="../js/app.js">
-</script>
+<script type="application/javascript" src="../js/dep.js"></script>
+<script type="application/javascript" src="../js/app.js"></script>
+
 
 </html>

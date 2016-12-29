@@ -12,9 +12,9 @@ changeuser.config(function($routeProvider){
               type:"get"
             },
             method:'POST'
-          }).success(function(res){
+          }).then(function(res){
               $scope.user_data = res;
-          }).error(function(err){
+          },function(err){
             toastr.error( "اشکال داخلی سرور","خطا");
           });
         }

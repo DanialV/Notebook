@@ -21,10 +21,10 @@ _favorite.config(function($routeProvider) {
                 data: {
                     type: "get_data"
                 }
-            }).success(function(data) {
+            }).then(function(data) {
                 // console.log(data);
                 $scope.favoriteData = data;
-            }).error(function() {
+            },function() {
                 toastr.error("اشکال داخلی سرور", "خطا");
             });
             $scope.on_delete = function(result) {
@@ -32,12 +32,12 @@ _favorite.config(function($routeProvider) {
                     url: '/delfavorite',
                     method: 'POST',
                     data: result
-                }).success(function() {
+                }).then(function() {
                     var index = $scope.favoriteData.indexOf(result);
                     $scope.favoriteData.splice(index, 1);
                     toastr["warning"]("شماره تلفن از لیست مورد علاقه حذف شد.", "حذف");
 
-                }).error(function() {
+                },function() {
                     toastr.error("اشکال داخلی سرور", "خطا");
                 });
             }

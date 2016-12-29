@@ -21,10 +21,10 @@ user_management.config(function($routeProvider){
       $http({
         url:'/user_management',
         method:'GET'
-      }).success(function(res){
+      }).then(function(res){
         $scope.user_data = res;
 
-      }).error(function(err){
+      },function(err){
         toastr.error( "اشکال داخلی سرور","خطا");
       });
       $scope.on_change = function(result){
@@ -61,7 +61,7 @@ user_management.config(function($routeProvider){
             url:'/edit_user',
             method:'POST',
             data : $scope.edit_user
-          }).success(function(res){
+          }).then(function(res){
               if(res == "ok"){
                 var index = $scope.user_data.indexOf($scope._edit_user);
                 $scope.user_data[index].first_name = $scope.edit_user.first_name;
@@ -75,7 +75,7 @@ user_management.config(function($routeProvider){
               else if(res == "UError")   toastr.error( "نام کاربری در سیستم موجود است.",'خطا');
               else if(res == "PError")   toastr.error( "رمز عبور مطابقت ندارد.",'خطا');
 
-          }).error(function(err){
+          },function(err){
             if(err.status == 403){
                 return toastr.error( "دسترسی غیر مجاز","خطا");
             }
@@ -88,13 +88,13 @@ user_management.config(function($routeProvider){
           url:'/deluser',
           method:'POST',
           data:result
-        }).success(function(res){
+        }).then(function(res){
           if(res == "ok"){
             var index = $scope.user_data.indexOf(result);
             $scope.user_data.splice(index,1);
             toastr["warning"]("کاربر با موفقیت حذف شد.","حذف");
           }
-        }).error(function(err){
+        },function(err){
           if(err.status == 403){
               return toastr.error( "دسترسی غیر مجاز","خطا");
           }

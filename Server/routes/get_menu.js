@@ -3,11 +3,11 @@ let async = require('async')
 module.exports.get = function(req, res) {
     if (typeof req.user == 'undefined') {
         let data = [{
-            'href': '#/login',
+            'href': '#!/login/',
             'class': 'loginActive',
             'value': 'ورود'
         }, {
-            'href': '#/enroll',
+            'href': '#!/enroll',
             'class': 'enrollActive',
             'value': 'ثبت نام'
         }, ]
@@ -21,7 +21,7 @@ module.exports.get = function(req, res) {
     } else {
         let permssions = req.user.permissions;
         var data = [{
-            'href': '#/enroll',
+            'href': '#!/enroll',
             'class': 'enrollActive',
             'value': 'ثبت نام',
         }]
@@ -36,7 +36,7 @@ module.exports.get = function(req, res) {
             }
             if (index == "add_phone") {
                 data.push({
-                    'href': '#/add_phone',
+                    'href': '#!/add_phone',
                     'class': 'add_phoneActive',
                     'value': 'اضافه کردن شماره تلفن'
                 });
@@ -44,14 +44,14 @@ module.exports.get = function(req, res) {
             if ((index == "edit_user" || index == "delete_user") && check_user_managment == null) {
                 check_user_managment = index;
                 data.push({
-                    'href': '#/user_management',
+                    'href': '#!/user_management',
                     'class': 'usermanagmentActive',
                     'value': 'مدیریت کاربران'
                 });
             }
             if (index == "system_logs") {
                 data.push({
-                    'href': '#/logs',
+                    'href': '#!/logs',
                     'class': 'logsActive',
                     'value': 'لاگ های سرور'
                 });
