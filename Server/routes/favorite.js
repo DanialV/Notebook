@@ -33,11 +33,10 @@ module.exports.post = function(req,res){
             });
         }
         function add_to_favorite(_id,callback){
-            var name = req.session.username;
-            db.users.findOne({username : name},{},function(err,info){
+            var id = req.session._id;
+            db.users.findOne({_id : id},{},function(err,info){
                 if(err){
-                    console.mongo(err);
-                    console.error(err);
+                    console.mongo('Error',err);
                     callback(err,null);
                 }
                 else{

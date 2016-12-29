@@ -3,11 +3,11 @@
  */
 //TODO: All logs should change add info logs and error logs
 //PLANNING: permissions should change add premission for  see just phone number
-_root = angular.module('root', ['ngRoute', 'angularSpinner', 'angular-bind-html-compile']);
+_root = angular.module('root', ['ngRoute', 'angularSpinner', 'angular-bind-html-compile', 'http_engine']);
 _root.config(function($routeProvider) {
     $routeProvider.when('/', {
         templateUrl: 'views/main_content.html',
-        controller: function($scope, $http, usSpinnerService) {
+        controller: function($scope, http, usSpinnerService) {
             $scope.setActive('');
             $scope.HeaderName('جستجوی شماره تلفن');
             $scope.body = 'fade-handel';
@@ -19,10 +19,10 @@ _root.config(function($routeProvider) {
             $scope._edit_form = {};
             $scope.delete_row = true;
             usSpinnerService.stop('spinner');
-            $http({
-                url: '/main_content',
-                method: 'GET'
-            }).then(function(data) {
+            http.get('/main_content', {}, function(err, data) {
+                if (err) {
+                    return toastr.error("اشکال داخلی سرور", "خطا");
+                }
                 if (data != null) {
                     if (data.permissions.indexOf('phone_number') != -1)
                         $scope.phone_number = true;
@@ -33,25 +33,19 @@ _root.config(function($routeProvider) {
                     if (data.permissions.indexOf('delete_phone') != -1)
                         $scope.delete_buttom = "<button type='button' class='btn btn-danger btn-sm' ng-click='ondelete(result)'>حذف</button>"
                 }
-
-            },function(err) {
-
             });
             $scope.onsubmit = function() {
                 $scope.delete_row = true;
                 usSpinnerService.stop('spinner');
                 if (typeof $scope._data.search != 'undefined') {
                     usSpinnerService.spin('spinner');
-                    $http({
-                        method: 'POST',
-                        url: '/',
-                        data: $scope._data
-                    }).then(function(data) {
+                    http.post('/', $scope._data, function(err, data) {
+                        if (err) {
+                            usSpinnerService.stop('spinner');
+                            return toastr.error("اشکال داخلی سرور", "خطا");
+                        }
                         usSpinnerService.stop('spinner');
                         $scope.query = data;
-                    },function(err) {
-                        usSpinnerService.stop('spinner');
-                        toastr.error("اشکال داخلی سرور", "خطا");
                     });
                 }
             };
@@ -66,11 +60,11 @@ _root.config(function($routeProvider) {
                 $scope.edit_form.finder = specific_user._id;
             };
             $scope.sendedit = function() {
-                $http({
-                    method: 'post',
-                    url: '/editnumber',
-                    data: $scope.edit_form
-                }).then(function() {
+                http.post('/editnumber', $scope.edit_form, function(err, data) {
+                    if (err) {
+                        return toastr.error("اشکال داخلی سرور", "خطا");
+                    }
+                    //Todo:data should't be null :|
                     var index = $scope.query.indexOf($scope._edit_form);
                     $scope.query[index].name = $scope.edit_form.name;
                     $scope.query[index].departmenet = $scope.edit_form.departmenet;
@@ -80,40 +74,33 @@ _root.config(function($routeProvider) {
                     $scope.query[index].room_number = $scope.edit_form.room_number;
                     document.getElementById("close").click();
                     toastr["info"]("تغییرات با موفقیت ثبت شد.", "ویرایش");
-
-                },function(err) {
-                    toastr.error("اشکال داخلی سرور", "خطا");
                 });
             };
             $scope.ondelete = function(result) {
-                $http({
-                    method: 'POST',
-                    url: '/deletenumber',
-                    data: result
-                }).then(function() {
+                http.post('/deletenumber', result, function(err, data) {
+                    if (err) {
+                        return toastr.error("اشکال داخلی سرور", "خطا");
+                    }
+                    //Todo:data should't be null :|
                     var index = $scope.query.indexOf(result);
                     $scope.query.splice(index, 1);
                     toastr["warning"]("شماره تلفن با موفقیت حذف شد.", "حذف");
-                },function() {
-                    toastr.error("اشکال داخلی سرور", "خطا");
                 });
             };
             $scope.onfavorite = function(result) {
                 var id = result._id;
-                $http({
-                    url: '/favorite',
-                    method: 'post',
-                    data: {
-                        id: id,
-                        type: "add"
+                var _data = {
+                    id: id,
+                    type: "add"
+                };
+                http.post('/favorite', _data, function(err, data) {
+                    if (err) {
+                        return toastr.error("اشکال داخلی سرور", "خطا");
                     }
-                }).then(function(ok) {
-                    if (ok)
+                    if (data)
                         toastr["info"]("شماره تلفن در لیست مورد علاقه ذخیره شد.", "ثبت");
                     else
                         toastr.error("این شماره در لیست شما قرار دارد.", "خطا");
-                },function() {
-                    toastr.error("اشکال داخلی سرور", "خطا");
                 });
             };
         }

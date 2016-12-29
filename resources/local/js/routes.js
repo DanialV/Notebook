@@ -1,21 +1,22 @@
 /**
  * Created by danial on 9/5/16.
  */
-myapp = angular.module('sadjad118', ['error','root', 'add_phone', 'login', 'enroll', 'favorite', 'user_management', 'logs']);
-myapp.config(function($routeProvider) {
+myapp = angular.module('sadjad118', ['http_engine', 'error', 'root', 'add_phone', 'login', 'enroll', 'favorite', 'user_management', 'logs']);
+myapp.config(function($routeProvider,$qProvider) {
     $routeProvider.otherwise({
         templateUrl: 'views/404.html'
     });
+    $qProvider.errorOnUnhandledRejections(false);
 });
-myapp.controller("body_controller", function($scope, $http,$location) {
+myapp.controller("body_controller", function($scope, $location, http) {
     $scope.error = {};
-    $scope.set_permissions = function(permissions){
-      $scope.permissions = permissions;
+    $scope.set_permissions = function(permissions) {
+        $scope.permissions = permissions;
     }
-    $scope.set_menu = function(alldata){
-      $scope.menu = alldata.data
-      $scope.user_session = alldata.username
-      $scope.set_permissions(alldata.premissions);
+    $scope.set_menu = function(alldata) {
+        $scope.menu = alldata.data
+        $scope.user_session = alldata.username
+        $scope.set_permissions(alldata.premissions);
     }
     $scope.toaster = toastr.options = {
         "closeButton": true,
@@ -34,14 +35,12 @@ myapp.controller("body_controller", function($scope, $http,$location) {
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     };
-    $http({
-        url: '/get_menu',
-        type: 'GET'
-    }).then(function(alldata) {
-        $scope.set_menu(alldata.data);
-        $scope.version = alldata.version
-    },function(err) {
-        toastr.error("اشکال داخلی سرور", "خطا");
+    http.get('/get_menu', {}, function(err, data) {
+        if (err) {
+            return toastr.error("اشکال داخلی سرور", "خطا");
+        }
+        $scope.set_menu(data);
+        $scope.version = data.version
     });
     $scope.setActive = function(type) {
         $scope.loginActive = '';
@@ -62,23 +61,18 @@ myapp.controller("body_controller", function($scope, $http,$location) {
         $scope.Header = name;
     };
     $scope.logout = function() {
-        $http({
-            url: '/logout',
-            method: 'GET',
-
-        }).then(function(res) {
+        http.get('/logout', {}, function(err, data) {
+            if (err) {
+                return toastr.error("اشکال داخلی سرور", "خطا");
+            }
             $scope.set_permissions([]);
-            $http({
-                url: '/get_menu',
-                type: 'GET'
-            }).then(function(alldata) {
-                $scope.set_menu(alldata.data)
+            http.get('/get_menu', {}, function(err, data) {
+                if (err) {
+                    return toastr.error("اشکال داخلی سرور", "خطا");
+                }
+                $scope.set_menu(data)
                 window.location = '/';
-            },function(err) {
-                toastr.error("اشکال داخلی سرور", "خطا");
             });
-        },function(err) {
-            toastr.error("اشکال داخلی سرور", "خطا");
         });
     };
 

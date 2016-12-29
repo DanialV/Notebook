@@ -4,6 +4,7 @@
    ],
    "app_js": [
      "resources/local/js/routes.js",
+     "resources/local/js/controllers/http_engine.js",
      "resources/local/js/controllers/login.js",
      "resources/local/js/controllers/root.js",
      "resources/local/js/controllers/error.js",

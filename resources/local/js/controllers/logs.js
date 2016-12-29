@@ -1,5 +1,5 @@
 //TODO: post should work after server logs finised
-logs = angular.module('logs',['ngRoute']);
+logs = angular.module('logs',['ngRoute','http_engine']);
 logs.config(function($routeProvider){
   $routeProvider.when('/logs',{
     templateUrl:'views/logs.html',

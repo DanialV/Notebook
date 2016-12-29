@@ -29,7 +29,7 @@ module.exports.get = function(req, res) {
         async.each(permssions, function(index, callback) {
             if (index == "favorite_list") {
                 data.push({
-                    'href': '#/favorite',
+                    'href': '#!/favorite',
                     'class': 'favoriteActive',
                     'value': 'لیست مورد علاقه'
                 });

@@ -1,11 +1,11 @@
 /**
  * Created by danial on 9/20/16.
  */
-var user_management = angular.module('user_management',['ngRoute']);
+var user_management = angular.module('user_management',['ngRoute','http_engine']);
 user_management.config(function($routeProvider){
   $routeProvider.when('/user_management',{
     templateUrl:'views/user_management.html',
-    controller:function($scope,$http,$location){
+    controller:function($scope,http,$location){
       if ($scope.permissions.indexOf('edit_user') == -1 && $scope.permissions.indexOf('delete_user') == -1) {
           $scope.error.error_status = 403;
           $scope.error.error_message = "اجازه دسترسی به صفحه مورد نظر را ندارید!";
@@ -18,14 +18,11 @@ user_management.config(function($routeProvider){
       $scope.user_data = {};
       $scope.edit_user = {};
       $scope._edit_user = {};
-      $http({
-        url:'/user_management',
-        method:'GET'
-      }).then(function(res){
-        $scope.user_data = res;
-
-      },function(err){
-        toastr.error( "اشکال داخلی سرور","خطا");
+      http.get('/user_management',{},function(err,data){
+        if(err){
+          return toastr.error( "اشکال داخلی سرور","خطا");
+        }
+        $scope.user_data = data;
       });
       $scope.on_change = function(result){
         $scope._edit_user = result;
@@ -57,48 +54,41 @@ user_management.config(function($routeProvider){
           toastr.error( "رمز عبور و تکرار رمز عبور صحیح وارد نشده اند.",'خطا');
         }
         else{
-          $http({
-            url:'/edit_user',
-            method:'POST',
-            data : $scope.edit_user
-          }).then(function(res){
-              if(res == "ok"){
-                var index = $scope.user_data.indexOf($scope._edit_user);
-                $scope.user_data[index].first_name = $scope.edit_user.first_name;
-                $scope.user_data[index].last_name = $scope.edit_user.last_name;
-                $scope.user_data[index].email = $scope.edit_user.email;
-                $scope.user_data[index].role = $scope.edit_user.role;
-                $scope.user_data[index].username = $scope.edit_user.username;
-                toastr["info"]("تغییرات با موفقیت ثبت شد.","ویرایش");
+          http.post('/edit_user',$scope.edit_user,function(err,data){
+            if(err){
+              if(err.status == 403){
+                  return toastr.error( "دسترسی غیر مجاز","خطا");
               }
-              else if(res == "FError")   toastr.error( "اطلاعات وارد شده قابل قبول نمی باشد.",'خطا');
-              else if(res == "UError")   toastr.error( "نام کاربری در سیستم موجود است.",'خطا');
-              else if(res == "PError")   toastr.error( "رمز عبور مطابقت ندارد.",'خطا');
-
-          },function(err){
-            if(err.status == 403){
-                return toastr.error( "دسترسی غیر مجاز","خطا");
+              return toastr.error( "اشکال داخلی سرور","خطا");
             }
-            toastr.error( "اشکال داخلی سرور","خطا");
+            if(data == "ok"){
+              var index = $scope.user_data.indexOf($scope._edit_user);
+              $scope.user_data[index].first_name = $scope.edit_user.first_name;
+              $scope.user_data[index].last_name = $scope.edit_user.last_name;
+              $scope.user_data[index].email = $scope.edit_user.email;
+              $scope.user_data[index].role = $scope.edit_user.role;
+              $scope.user_data[index].username = $scope.edit_user.username;
+              toastr["info"]("تغییرات با موفقیت ثبت شد.","ویرایش");
+            }
+            else if(data == "FError")   toastr.error( "اطلاعات وارد شده قابل قبول نمی باشد.",'خطا');
+            else if(data == "UError")   toastr.error( "نام کاربری در سیستم موجود است.",'خطا');
+            else if(data == "PError")   toastr.error( "رمز عبور مطابقت ندارد.",'خطا');
           });
         }
       }
       $scope.delete_user = function(result){
-        $http({
-          url:'/deluser',
-          method:'POST',
-          data:result
-        }).then(function(res){
-          if(res == "ok"){
+        http.post('/deluser',result,function(err,data){
+          if(err){
+            if(err.status == 403){
+                return toastr.error( "دسترسی غیر مجاز","خطا");
+            }
+            return toastr.error( "اشکال داخلی سرور","خطا");
+          }
+          if(data == "ok"){
             var index = $scope.user_data.indexOf(result);
             $scope.user_data.splice(index,1);
             toastr["warning"]("کاربر با موفقیت حذف شد.","حذف");
           }
-        },function(err){
-          if(err.status == 403){
-              return toastr.error( "دسترسی غیر مجاز","خطا");
-          }
-          toastr.error( "اشکال داخلی سرور","خطا");
         });
       }
 
