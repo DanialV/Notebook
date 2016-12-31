@@ -27,7 +27,7 @@
         </button>
           <a id="main_page" class="navbar-brand pull-right"  style="padding:27px" href="#!/">
             <span id="menu-toggle" class="glyphicon glyphicon-align-justify  toggle pull-right" style="top:-1px;" aria-hidden="true"></span>
-            <span style="margin-top:27px; margin-right:20px;">جستجوگر شماره تلفن ۱۱۸</span>
+            <span style="margin-top:27px; margin-right:20px;">جستجوگر شماره تلفن ۱۱۸ دانشگاه سجاد</span>
 
           </a>
       </div>
@@ -76,10 +76,17 @@
     <div id="sidebar-wrapper">
         <nav id="spy">
             <ul class="sidebar-nav nav">
+              <li>
+                <a  ng-bind="user_session" ng-show="user_session"></a>
+              </li>
+               <li role="separator" class="divider"></li>
               <li ng-repeat="index in menu" ng-class="{{index.class}}">
                   <a ng-href="{{index.href}}" ng-bind="index.value">
                       <i class="icon-chevron-sign-up icon-large"></i>
                   </a>
+              </li>
+              <li>
+                <a href="" ng-click="logout()" ng-show="user_session">خروج</a>
               </li>
 
             </ul>

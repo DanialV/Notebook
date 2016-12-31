@@ -34,7 +34,7 @@ module.exports.post = function(req, res) {
                   }
                   console.mongo('Info','Unsuccessful login wrong password Username : ' + user_data.username);
                   res_data.status = false;
-                  return(callback(null, data));
+                  return(callback(null, res_data));
               });
           });
       }
@@ -43,6 +43,7 @@ module.exports.post = function(req, res) {
             console.mongo('Error', err);
             return res.sendStatus(500);
         }
+        console.log(result);
         res.send(result);
     });
 };
