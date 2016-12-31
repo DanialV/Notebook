@@ -1,7 +1,8 @@
 {
    "dep_css": [
-     "resources/dist/bootswatch/cerulean/bootstrap.min.css",
+     "resources/dist/bootswatch/cosmo/bootstrap.min.css",
      "resources/local/css/bootstrap_rtl.css",
+     "resources/dist/font-awesome/css/font-awesome.min.css",
      "resources/local/css/toastr.min.css"
    ],
    "dep_js": [

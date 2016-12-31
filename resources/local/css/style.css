@@ -48,13 +48,49 @@
     url('../fonts/IRANSansWeb.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
     url('../fonts/IRANSansWeb.ttf') format('truetype');
 }
+html body{
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3)
+    ), url('../images/banner8.jpg') no-repeat center center fixed ;
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
 thead{
   white-space: nowrap;
   font-weight: bold;
 }
 .navbar{
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3));
   border-radius: 0
 }
+.navbar-default {
+
+  border: 0;
+}
+.navbar-fixed-top {
+    min-height: 80px;
+}
+
+.navbar-nav > li > a {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    line-height: 80px;
+}
+
+@media (max-width: 767px) {
+    .navbar-nav > li > a {
+    line-height: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;}
+}
+
+
 @font-face {
     font-family: 'BYekan';
     src: url('../fonts/BYekan.eot?#') format('eot'),  /* IE6–8 */
@@ -63,15 +99,22 @@ thead{
     font-weight: 400;
     font-style: normal;
 }
-
-body{
+body {
     font-family:IRANSans, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif!important;;
 }
 h2,h3,h1,h5,h4{
     font-family: IRANSans, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif!important;;
 }
-
-
+.panel{
+  border: 0;
+}
+.logo{
+    text-align: center;
+}
+.panel-heading{
+    background-color:#008080 none repeat scroll 0 0 ;
+    border-radius: 0;
+}
 .fade-handel{
     -webkit-animation: fadein .5s; /* Safari and Chrome */
     -moz-animation: fadein .5s; /* Firefox */
@@ -127,16 +170,19 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 30px;
-    background-color: #f3f3f3;
 }
 .footer {
-    position: absolute;
     bottom: 0;
     width: 100%;
     /* Set the fixed height of the footer here */
-    background-color: #ffffff;
-    height: 30px;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.3));  position: fixed;
 
+
+}
+.content{
+  min-height: 486px;
 }
 .navbar-login
 {
@@ -215,4 +261,128 @@ body {
 }
 .phone-enter.phone-enter-active {
     opacity: 1;
+}
+
+#wrapper {
+  padding-right: 0px;
+  transition: all 0.4s ease 0s;
+}
+
+#sidebar-wrapper {
+  margin-right: -250px;
+  top: 87px;
+  right: 250px;
+  width: 250px;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.8),
+      rgba(0, 0, 0, 0.8));  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 1000;
+  transition: all 0.4s ease 0s;
+}
+
+#wrapper.active {
+  padding-right: 0;
+}
+
+#wrapper.active #sidebar-wrapper {
+  right: 0;
+}
+
+#page-content-wrapper {
+  width: 100%;
+  padding-top: 70px;
+  transition: all 0.4s ease 0s;
+}
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-nav li {
+  line-height: 40px;
+  text-indent: 20px;
+}
+
+.sidebar-nav li a {
+  color: #999999;
+  display: block;
+  text-decoration: none;
+  padding-right: 2px;
+}
+
+.sidebar-nav li a span:before {
+  position: absolute;
+  right: 0;
+  color: #41484c;
+  text-align: center;
+  width: 20px;
+  line-height: 18px;
+}
+
+.sidebar-nav li a:hover,
+.sidebar-nav li.active {
+  color: #fff;
+  background: rgba(255,255,255,0.2);
+  text-decoration: none;
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+  text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+  height: 65px;
+  line-height: 60px;
+  font-size: 18px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+  color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+  color: #fff;
+  background: none;
+}
+
+#menu-toggle {
+    text-decoration: none;
+    float: right;
+    color: #fff;
+    padding-right: 15px;
+}
+
+@media (max-width:767px) {
+
+#wrapper {
+  padding-right: 0;
+}
+
+#sidebar-wrapper {
+  right: 0;
+}
+
+#wrapper.active {
+  position: relative;
+  right: 0px;
+}
+
+#wrapper.active #sidebar-wrapper {
+  right: 0px;
+  width: 250px;
+  transition: all 0.4s ease 0s;
+}
+
+#menu-toggle {
+  display: inline-block;
+}
+
 }
