@@ -2,7 +2,7 @@
  * Created by danial on 9/5/16.
  */
 myapp = angular.module('sadjad118', ['http_engine', 'error', 'root', 'add_phone', 'login', 'enroll', 'favorite', 'user_management', 'logs']);
-myapp.config(function($routeProvider,$qProvider) {
+myapp.config(function($routeProvider, $qProvider) {
     $routeProvider.otherwise({
         templateUrl: 'views/404.html'
     });
@@ -15,6 +15,7 @@ myapp.controller("body_controller", function($scope, $location, http) {
     }
     $scope.set_menu = function(alldata) {
         $scope.menu = alldata.data
+        console.log($scope.menu);
         $scope.user_session = alldata.username
         $scope.set_permissions(alldata.premissions);
     }

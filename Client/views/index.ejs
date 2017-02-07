@@ -12,134 +12,108 @@
     <meta name="author" content="Danial Vafadar Rad|daniel.vafadar@gmail.com">
     <meta property="root" content="http://118.sadjad.ac.ir" />
     <link href='../css/dep.css' rel='stylesheet' type='text/css'>
-
     <link href='../css/app.css' rel='stylesheet' type='text/css'>
 </head>
 
 <body ng-app="sadjad118" ng-controller="body_controller">
     <nav class="navbar navbar-default">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-          <a id="main_page" class="navbar-brand pull-right"  style="padding:27px" href="#!/">
-            <span id="menu-toggle" class="glyphicon glyphicon-align-justify  toggle pull-right" style="top:-1px;" aria-hidden="true"></span>
-            <span style="margin-top:27px; margin-right:20px;">جستجوگر شماره تلفن ۱۱۸ دانشگاه سجاد</span>
+        <div class="navbar-header">
+            <a id="main_page" class="navbar-brand pull-right" style="padding:27px" href="#!/">
+                <span id="menu-toggle" class="glyphicon glyphicon-align-justify  toggle pull-right" style="top:7px;" aria-hidden="true"></span>
+            </a>
+        </div>
+        <span style="margin-top:27px; margin-right:20px;"><img class='logo1' src='../images/logo1.png'></img></span>
 
-          </a>
-      </div>
-      <img class="pull-left"  src="../images/logo.png">
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-          <ul class="nav navbar-nav">
-
-          </ul>
-          <ul class="nav navbar-nav navbar-left" ng-show="user_session">
-              <li class="dropdown">
-                  <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                      <span class="glyphicon glyphicon-user"></span>
-                      <strong ng-bind="user_session"></strong>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-right pull-left">
-                      <li>
-                          <div class="navbar-login">
-                              <div class="row">
-                                  <div class="col-lg-12">
-                                      <p class="text-center">
-                                          <span class="glyphicon glyphicon-user icon-size"></span>
-                                      </p>
-                                  </div>
-                              </div>
-                          </div>
-                      </li>
-                      <li class="divider"></li>
-                      <li>
-                          <div class="navbar-login navbar-login-session">
-                              <div class="row">
-                                  <div class="col-lg-12">
-                                      <p>
-                                          <a href="" ng-click="logout()" class="btn btn-danger btn-block">خروج</a>
-                                      </p>
-                                  </div>
-                              </div>
-                          </div>
-                      </li>
-                  </ul>
-              </li>
-          </ul>
-      </div>
-    </nav>
-    <!-- Sidebar -->
-  <div id="wrapper">
-    <div id="sidebar-wrapper">
-        <nav id="spy">
-            <ul class="sidebar-nav nav">
-              <li>
-                <a  ng-bind="user_session" ng-show="user_session"></a>
-              </li>
-               <li role="separator" class="divider"></li>
-              <li ng-repeat="index in menu" ng-class="{{index.class}}">
-                  <a ng-href="{{index.href}}" ng-bind="index.value">
-                      <i class="icon-chevron-sign-up icon-large"></i>
-                  </a>
-              </li>
-              <li>
-                <a href="" ng-click="logout()" ng-show="user_session">خروج</a>
-              </li>
+        <img id='logo' class=" pull-left" src="../images/logo.png">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+            <ul class="nav navbar-nav">
 
             </ul>
-        </nav>
-    </div>
-    <div class="content">
-      <div class="col-md-9">
-          <div class="panel panel-default">
-              <div class="panel-heading">
-                  <h3 id="content_header" class="panel-title" ng-class="header" ng-bind="Header"></h3>
-              </div>
-              <div id="content_body" class="panel-body" ng-view ng-class="body">
-              </div>
-          </div>
-      </div>
-      <div class="col-md-3">
-          <div class="panel panel-default">
-              <div class="panel-heading">
-                  <h3 id="content_header" class="panel-title">لینک های مفید</h3>
-              </div>
-              <div id="content_body" class="panel-body dalghak">
-                  <style>
-                      .glyphicon-plus-sign {
-                          font-size: 30px;
-                      }
-                  </style>
-                  <a href="http://pooya.sadjad.ac.ir" target="_blank" class="btn btn-warning  btn-block">سایت دانشگاه</a>
-                  <span class="glyphicon glyphicon-plus-sign" style="text-align: center" aria-hidden="true"></span>
-
-              </div>
-          </div>
-      </div>
-    </div>
-    <nav class="footer">
-        <div class="container">
-            <div class="col-sm-6 ">
-                <p class="pull-right"><a href="{{computer_center}}" style="color:white" target="_blank">مرکز کامپیوتر - دانشگاه صنعتی سجاد</a></p>
-            </div>
-            <div class="col-sm-6">
-                <p class="pull-left" style="color:white" ng-bind="::version"></p>
-            </div>
+            <ul class="nav navbar-nav navbar-left" ng-show="user_session">
+                <li class="dropdown">
+                    <ul class="dropdown-menu dropdown-menu-right pull-left">
+                        <li>
+                            <div class="navbar-login">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p class="text-center">
+                                            <span class="glyphicon glyphicon-user icon-size"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="navbar-login navbar-login-session">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p>
+                                            <a href="" ng-click="logout()" class="btn btn-danger btn-block">خروج</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </nav>
-      </div>
+    <!-- Sidebar -->
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <nav id="spy">
+                <ul class="sidebar-nav nav">
+                    <li ng-repeat="index in menu" ng-class="{{index.class}}">
+                        <a ng-href="{{index.href}}" ng-bind="index.value" class='hvr-underline-from-center'>
+                            <i class="fa fa-handshake-o" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class='hvr-underline-from-center' href="" ng-click="logout()" ng-show="user_session">خروج</a>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+        <div class="content">
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 id="content_header" class="panel-title" ng-class="header" ng-bind="Header"></h3>
+                    </div>
+                    <div id="content_body" class="panel-body" ng-view ng-class="body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 id="content_header" class="panel-title">لینک های مفید</h3>
+                    </div>
+                    <div id="content_body" class="panel-body dalghak">
+                        <style>
+                            .glyphicon-plus-sign {
+                                font-size: 30px;
+                            }
+                        </style>
+                        <a href="http://pooya.sadjad.ac.ir" target="_blank" class="btn btn-warning  btn-block">سایت دانشگاه</a>
+                        <span class="glyphicon glyphicon-plus-sign" style="text-align: center" aria-hidden="true"></span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <script type="application/javascript" src="../js/dep.js"></script>
 <script type="application/javascript" src="../js/app.js"></script>
 <script>
-$("#menu-toggle").click(function(e) {
-    e.preventDefault();
-    $("#wrapper").toggleClass("active");
-});
-$( "#menu-toggle" ).trigger( "click" );
-
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("active");
+    });
 </script>
+
 </html>
