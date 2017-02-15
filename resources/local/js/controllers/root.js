@@ -8,7 +8,7 @@ _root.config(function($routeProvider) {
     $routeProvider.when('/', {
         templateUrl: 'views/main_content.html',
         controller: function($scope, http, usSpinnerService) {
-            $scope.setActive('');
+            $scope.setActive('fa fa-search');
             $scope.HeaderName('جستجوی شماره تلفن');
             $scope.body = 'fade-handel';
             $scope.header = 'fade-handel';

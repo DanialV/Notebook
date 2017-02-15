@@ -15,7 +15,6 @@ myapp.controller("body_controller", function($scope, $location, http) {
     }
     $scope.set_menu = function(alldata) {
         $scope.menu = alldata.data
-        console.log($scope.menu);
         $scope.user_session = alldata.username
         $scope.set_permissions(alldata.premissions);
     }
@@ -44,13 +43,7 @@ myapp.controller("body_controller", function($scope, $location, http) {
         $scope.version = data.version
     });
     $scope.setActive = function(type) {
-        $scope.loginActive = '';
-        $scope.enrollActive = '';
-        $scope.addphoneActive = '';
-        $scope.favoriteActive = '';
-        $scope.usermanagementActive = '';
-        $scope.logsActive = '';
-        $scope[type + 'Active'] = 'active';
+        $scope.menu_icon = type;
     };
     $scope.condtions = null;
     $scope.stu_url = "http://stu.sadjad.ac.ir";

@@ -19,7 +19,7 @@
     <nav class="navbar navbar-default">
         <div class="navbar-header">
             <a id="main_page" class="navbar-brand pull-right" style="padding:27px" href="#!/">
-                <span id="menu-toggle" class="glyphicon glyphicon-align-justify  toggle pull-right" style="top:7px;" aria-hidden="true"></span>
+                <span id="menu-toggle" class="toggle glyphicon glyphicon-align-justify  toggle pull-right" aria-hidden="true"></span>
             </a>
         </div>
         <span style="margin-top:27px; margin-right:20px;"><img class='logo1' src='../images/logo1.png'></img></span>
@@ -43,7 +43,6 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="divider"></li>
                         <li>
                             <div class="navbar-login navbar-login-session">
                                 <div class="row">
@@ -65,13 +64,16 @@
         <div id="sidebar-wrapper">
             <nav id="spy">
                 <ul class="sidebar-nav nav">
-                    <li ng-repeat="index in menu" ng-class="{{index.class}}">
-                        <a ng-href="{{index.href}}" ng-bind="index.value" class='hvr-underline-from-center'>
-                            <i class="fa fa-handshake-o" aria-hidden="true"></i>
+                    <li ng-repeat="index in menu">
+                        <a ng-href="{{index.href}}" style='color:white' class='hvr-underline-from-center'>
+                            <i class="{{index.icon}}" aria-hidden="true" style='margin-left: 8px;'></i>
+                            <span ng-bind='index.value'></span>
                         </a>
                     </li>
+
                     <li>
-                        <a class='hvr-underline-from-center' href="" ng-click="logout()" ng-show="user_session">خروج</a>
+                        <a class='hvr-underline-from-center' style='color:white' href="" ng-click="logout()" ng-show="user_session"><i class="fa fa-sign-out" style='margin-left: 8px;' aria-hidden="true"></i>
+خروج</a>
                     </li>
 
                 </ul>
@@ -82,6 +84,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 id="content_header" class="panel-title" ng-class="header" ng-bind="Header"></h3>
+                        <span class="{{menu_icon}}" color='black' aria-hidden="true"></span>
                     </div>
                     <div id="content_body" class="panel-body" ng-view ng-class="body">
                     </div>
@@ -92,16 +95,36 @@
                     <div class="panel-heading">
                         <h3 id="content_header" class="panel-title">لینک های مفید</h3>
                     </div>
-                    <div id="content_body" class="panel-body dalghak">
-                        <style>
-                            .glyphicon-plus-sign {
-                                font-size: 30px;
-                            }
-                        </style>
-                        <a href="http://pooya.sadjad.ac.ir" target="_blank" class="btn btn-warning  btn-block">سایت دانشگاه</a>
-                        <span class="glyphicon glyphicon-plus-sign" style="text-align: center" aria-hidden="true"></span>
+                    <div id="content_body" class="panel-body">
+                        <a href='' style="color:black"><i class=" close_icon fa fa-times-circle" style='  margin-right:5px;
+                        position:absolute;
+                        margin-top: 3px;
+                        font-size: 18px;
+                        ' aria-hidden="true" ></i></a>
+                        <a href="http://pooya.sadjad.ac.ir" target="_blank" class="btn btn-primary  btn-block">سایت دانشگاه</a>
+                        <a href='' style='color:black' data-toggle="modal" data-target="#add_link"><span class="glyphicon glyphicon-plus-sign add_link" aria-hidden="true"></span></a>
 
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="add_link" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">اضافه‌کردن لینک‌های مفید</h4>
+
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
@@ -113,7 +136,9 @@
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("active");
+        $("#menu-toggle").toggleClass("rotate")
     });
+    $('a').trigger("mouseover");
 </script>
 
 </html>
