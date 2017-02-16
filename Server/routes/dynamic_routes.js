@@ -1,13 +1,14 @@
 /**
  * Created by danial on 7/28/16.
  */
- //TODO: add Logs post route and user edit profile
+//TODO: add Logs post route and user edit profile
 var _route = require("djs");
 var get_routes = [
     'get_menu',
     'main_content',
     'logout',
-    'user_management'
+    'user_management',
+    'external_link'
 ];
 var post_route = [
     'favorite',
@@ -19,14 +20,16 @@ var post_route = [
     'delfavorite',
     'edit_user',
     'deluser',
-    'forget_password'
+    'forget_password',
+    'external_link',
+    'delete_link'
 ];
-module.exports = function(app){
+module.exports = function(app) {
     app.route('/').get(require('./core').get).post(require('./core').post);
-    get_routes.forEach(function(index){
-        _route.file_get(app,index);
+    get_routes.forEach(function(index) {
+        _route.file_get(app, index);
     });
-    post_route.forEach(function(index){
-        _route.file_post(app,index);
+    post_route.forEach(function(index) {
+        _route.file_post(app, index);
     });
 };

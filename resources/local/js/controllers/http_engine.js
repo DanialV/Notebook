@@ -24,4 +24,17 @@ angular.module('http_engine', ['ngRoute']).service('http', function($http) {
             cb(err, null);
         });
     };
+    this.delete = function(path, _data, cb) {
+        if (_data == {}) {
+            _data = null;
+        }
+        $http({
+            url: path + '?' + data,
+            method: 'DELETE',
+        }).then(function(res_data) {
+            cb(null, res_data.data);
+        }, function(err) {
+            cb(err, null);
+        });
+    };
 });

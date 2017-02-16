@@ -69,5 +69,37 @@ myapp.controller("body_controller", function($scope, $location, http) {
             });
         });
     };
+    //external_link
+    $scope.external_link = [];
+    http.get('/external_link', {}, function(err, res) {
+        if (err) {
+            console.log(err);
+            return toastr.error("اشکال داخلی سرور", "خطا");
+        }
+        $scope.external_link = res;
+    });
+    $scope.deleteLink = function(index) {
+        http.post('/delete_link', index, function(err, res) {
+            if (err) {
+                console.log(err);
+                return toastr.error("اشکال داخلی سرور", "خطا");
+            }
+            toastr.warning('اطلاعات لینک با موفقیت حذف شد.');
+            $scope.external_link.splice($scope.external_link.indexOf(index), 1);
+        });
+    }
+    $scope.link_submit = function() {
+        http.post('/external_link', $scope.link, function(err, res) {
+            if (err) {
+                console.log(err);
+                return toastr.error("اشکال داخلی سرور", "خطا");
+            }
+            document.getElementById("close").click();
+            toastr.success('اطلاعات لینک با موفقیت ذخیره شد.');
+            $scope.external_link.push(JSON.parse(JSON.stringify($scope.link)));
+            $scope.link = {};
+        })
+    }
+
 
 });

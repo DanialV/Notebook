@@ -99,12 +99,15 @@
                         <h3 id="content_header" class="panel-title"><i class="fa fa-link" aria-hidden="true"></i> لینک های مفید</h3>
                     </div>
                     <div id="content_body" class="panel-body">
-                        <a href='' style="color:black"><span style='margin-right:5px;
+                        <div ng-repeat='index in external_link'>
+                            <a href="" style="color:black" ng-click="deleteLink(index)"><span  style='margin-right:5px;
                         position:absolute;
                         margin-top: 3px;
                         font-size: 18px;
                         ' aria-hidden="true" >×</span></a>
-                        <a href="http://pooya.sadjad.ac.ir" target="_blank" class="btn btn-primary  btn-block">سایت دانشگاه</a>
+                            <a href="{{index.address}}" target="_blank" style='background-color:{{index.color}}; border: none;' class="btn btn-primary  btn-block" ng-bind='index.name'></a>
+                            </br>
+                        </div>
                         <div style='text-align:center'>
                             <a href='' style='color:black;' data-toggle="modal" data-target="#add_link"><span class="glyphicon glyphicon-plus-sign add_link" aria-hidden="true"></span></a>
 
@@ -121,17 +124,35 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">اضافه‌کردن لینک‌های مفید</h4>
+                    <button id='close' type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel"><i class="fa fa-external-link" aria-hidden="true"></i>
+ اضافه‌کردن لینک‌های مفید</h4>
 
                 </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                <form role="form" method="POST" ng-submit="link_submit()">
+                    <div class="modal-body">
+                        <fieldset>
+                            <hr class="colorgraph">
+                            <div class="form-group">
+                                <label>عنوان لینک:</label>
+                                <input type="text" ng-model="link.name" class="form-control" placeholder="عنوان" required>
+                            </div>
+                            <div class="form-group">
+                                <label>آدرس لینک:</label>
+                                <input type="text" ng-model="link.address" dir='ltr' class="form-control" placeholder="آدرس لینک" required>
+                            </div>
+                            <div class="form-group">
+                                <label>رنگ:</label>
+                                <input type="color" ng-model="link.color" class="form-control">
+                            </div>
+                            <hr class="colorgraph">
+                        </fieldset>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-hdd-o" aria-hidden="true"></i> ذخیره کردن اطلاعات</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
