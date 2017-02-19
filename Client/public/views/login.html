@@ -1,35 +1,25 @@
 <div class="modal fade" id="forgot_password" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-<div class="modal-dialog" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <h4 class="modal-title" id="myModalLabel">بازیابی رمز‌‌ عبور</h4>
-    </div>
-    <div class="modal-body">
-      <form role="form" method="post" ng-submit="onforgot()">
-        <fieldset>
-          <div class="form-group">
-            <label class="col-sm-2 control-label" style="top:7px" for="textinput">ایمیل:</label>
-            <div class="col-sm-6 col-offset-4">
-              <input type="text" ng-modal="forget_email" dir='ltr' class="form-control">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">بازیابی رمز‌‌ عبور</h4>
             </div>
-          </div>
-        </fieldset>
-      </form>
+            <div class="modal-body">
+                <p dir='rtl'>برای بازیابای‌کلمه عبور یک ایمیل همراه با نام‌کاربری به آدرس 118سال کنید .</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-right" data-dismiss="modal">بستن</button>
+            </div>
+        </div>
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-default pull-right" data-dismiss="modal">بستن</button>
-      <button type="button" class="btn btn-primary pull-right">ارسال لینک بازیابی رمز عبور</button>
-    </div>
-  </div>
-</div>
 </div>
 <div>
     <div class="row" style="margin-top:20px">
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
             <form role="form" method="post" ng-submit="onsubmit()">
                 <fieldset>
-                    <h2 >جستجوگر شماره تلفن ۱۱۸</h2>
+                    <h2>جستجوگر شماره تلفن ۱۱۸</h2>
                     <hr class="colorgraph">
                     <div class="form-group">
                         <input type="text" name="username" id="username" ng-model="user.username" class="form-control input-lg" placeholder="نام کاربری">

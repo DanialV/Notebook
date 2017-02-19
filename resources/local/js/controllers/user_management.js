@@ -22,17 +22,19 @@ user_management.config(function($routeProvider) {
                 if (err) {
                     return toastr.error("اشکال داخلی سرور", "خطا");
                 }
-                $scope.user_data = data;
+                $scope.user_data = data.user_info;
+                $scope.permission_title = data.permission_title;
             });
             $scope.on_change = function(result) {
                 $scope._edit_user = result;
+
                 $scope.edit_user.first_name = result.first_name;
                 $scope.edit_user.last_name = result.last_name;
                 $scope.edit_user.username = result.username;
                 $scope.edit_user.pervious_username = result.username;
                 $scope.edit_user.email = result.email;
                 $scope.edit_user.password = '';
-                $scope.edit_user.role = result.role.toString();
+                $scope.edit_user.permissions = result.permissions;
                 $scope.edit_user.repeat_password = '';
                 $scope.edit_user._id = result._id;
             }
@@ -65,6 +67,7 @@ user_management.config(function($routeProvider) {
                             $scope.user_data[index].email = $scope.edit_user.email;
                             $scope.user_data[index].role = $scope.edit_user.role;
                             $scope.user_data[index].username = $scope.edit_user.username;
+                            $scope.user_data[index].permissions = $scope.edit_user.permissions;
                             toastr["info"]("تغییرات با موفقیت ثبت شد.", "ویرایش");
                         } else if (data == "FError") toastr.error("اطلاعات وارد شده قابل قبول نمی باشد.", 'خطا');
                         else if (data == "UError") toastr.error("نام کاربری در سیستم موجود است.", 'خطا');

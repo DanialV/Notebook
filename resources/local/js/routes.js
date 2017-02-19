@@ -11,7 +11,11 @@ myapp.config(function($routeProvider, $qProvider) {
 myapp.controller("body_controller", function($scope, $location, http) {
     $scope.error = {};
     $scope.set_permissions = function(permissions) {
+        if (typeof permissions == 'undefined') {
+            return $scope.permissions = [];
+        }
         $scope.permissions = permissions;
+
     }
     $scope.set_menu = function(alldata) {
         $scope.menu = alldata.data
@@ -98,7 +102,7 @@ myapp.controller("body_controller", function($scope, $location, http) {
             toastr.success('اطلاعات لینک با موفقیت ذخیره شد.');
             $scope.external_link.push(JSON.parse(JSON.stringify($scope.link)));
             $scope.link = {};
-        })
+        });
     }
 
 

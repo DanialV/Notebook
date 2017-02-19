@@ -18,11 +18,9 @@
 <body ng-app="sadjad118" ng-controller="body_controller">
     <nav class="navbar navbar-default">
         <div class="navbar-header">
-            <a id="main_page" class="navbar-brand pull-right" style="padding:27px" href="#!/">
-                <span id="menu-toggle" class="toggle glyphicon glyphicon-align-justify  toggle pull-right" aria-hidden="true"></span>
-            </a>
+            <span id="menu-toggle" style='top:18px;margin-right:5px;' class="navbar-brand toggle glyphicon glyphicon-align-justify  toggle pull-right" aria-hidden="true"></span>
         </div>
-        <span style="margin-top:27px; margin-right:20px;"><img class='logo1' src='../images/logo1.png'></img></span>
+        <a href="#!/"><span style="margin-top:27px; margin-right:20px;"><img class='logo1' src='../images/logo1.png'></img></span></a>
 
         <img id='logo' class=" pull-left" src="../images/logo.png">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
@@ -100,7 +98,7 @@
                     </div>
                     <div id="content_body" class="panel-body">
                         <div ng-repeat='index in external_link'>
-                            <a href="" style="color:black" ng-click="deleteLink(index)"><span  style='margin-right:5px;
+                            <a ng-if="permissions.indexOf('external_link') != -1" href="" style="color:black" ng-click="deleteLink(index)"><span  style='margin-right:5px;
                         position:absolute;
                         margin-top: 3px;
                         font-size: 18px;
@@ -108,9 +106,8 @@
                             <a href="{{index.address}}" target="_blank" style='background-color:{{index.color}}; border: none;' class="btn btn-primary  btn-block" ng-bind='index.name'></a>
                             </br>
                         </div>
-                        <div style='text-align:center'>
+                        <div style='text-align:center' ng-if="permissions.indexOf('external_link') != -1">
                             <a href='' style='color:black;' data-toggle="modal" data-target="#add_link"><span class="glyphicon glyphicon-plus-sign add_link" aria-hidden="true"></span></a>
-
                         </div>
 
                     </div>

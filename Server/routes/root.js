@@ -4,7 +4,7 @@
 //PLANNING: change the Site UI
 var error_handel = require("djs");
 var db = require('mongo_schemas');
-var get_routes = ['/get_menu', '/main_content', '/logout', '/', '/user_management', '/external_link'];
+var get_routes = ['/get_menu', '/main_content', '/logout', '/', '/user_management', '/external_link', '/logs'];
 var post_route = ['/favorite', '/deletenumber', '/editnumber', '/login', '/add_phone', '/enroll', '/delfavorite',
     '/edit_user',
     '/deluser',

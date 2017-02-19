@@ -8,9 +8,10 @@ module.exports.post = function(req, res) {
         },
         function(err) {
             if (err) {
-                console.log('Error', err);
+                console.mongo('Error', err);
                 return res.sendStatus(500);
             }
+            console.mongo('Info', 'A external Link added: ' + link_id.name);
             res.json({
                 status: true
             })

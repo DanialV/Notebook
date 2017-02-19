@@ -433,6 +433,9 @@ h2,h3,h1,h5,h4{
 }
 #sidebar-wrapper li{
   border-bottom: .1px solid #ffffff;
+  transition: all 0.4s ease 0s;
+
+
 }
 #sidebar-wrapper {
   border-left: 1px solid #cccccc;
@@ -472,6 +475,8 @@ h2,h3,h1,h5,h4{
   list-style: none;
   margin: 0;
   padding: 0;
+  transition: all 0.4s ease 0s;
+
 }
 
 .sidebar-nav li {
@@ -487,6 +492,8 @@ h2,h3,h1,h5,h4{
   display: block;
   text-decoration: none;
   padding-right: 2px;
+  transition: all 0.4s ease 0s;
+
 }
 
 .sidebar-nav li a span:before {
@@ -495,6 +502,8 @@ h2,h3,h1,h5,h4{
   text-align: center;
   width: 20px;
   line-height: 18px;
+  transition: all 0.4s ease 0s;
+
 }
 
 /*.sidebar-nav li a:hover,
@@ -513,6 +522,8 @@ h2,h3,h1,h5,h4{
   height: 65px;
   line-height: 60px;
   font-size: 18px;
+  transition: all 0.4s ease 0s;
+
 }
 
 .sidebar-nav > .sidebar-brand a {

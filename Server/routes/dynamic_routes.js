@@ -8,7 +8,8 @@ var get_routes = [
     'main_content',
     'logout',
     'user_management',
-    'external_link'
+    'external_link',
+    'logs',
 ];
 var post_route = [
     'favorite',
