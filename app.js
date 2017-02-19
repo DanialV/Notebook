@@ -12,10 +12,10 @@ var csrf = require('csurf');
 
 
 
-
 var app = express();
 
 // view engine setup
+//app.set('env','production');
 app.set('views', path.join(__dirname, 'Client/views'));
 app.set('view engine', 'ejs');
 
@@ -27,9 +27,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'Client/public')));
+
 app.use(session({
     name: 'sadjad118_session',
-    secret: 'kytddkhovoqyfjgfhch'
+    secret: 'kytddkhovoqy'
 }));
 app.use(csrf({
     cookie: true,

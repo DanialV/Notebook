@@ -1,0 +1,19 @@
+{
+   "dep_css": [
+     "resources/dist/bootswatch/cosmo/bootstrap.min.css",
+     "resources/local/css/bootstrap_rtl.css",
+     "resources/dist/font-awesome/css/font-awesome.min.css",
+     "resources/local/css/toastr.min.css"
+   ],
+   "dep_js": [
+     "resources/dist/jquery/dist/jquery.js",
+     "resources/dist/bootstrap/dist/js/bootstrap.js",
+     "resources/dist/angular/angular.min.js",
+     "resources/dist/angular-route/angular-route.js",
+     "resources/dist/angular-bind-html-compile/angular-bind-html-compile.min.js",
+     "resources/dist/angular-cookies/angular-cookies.js",
+     "resources/dist/spin.js/spin.min.js",
+     "resources/dist/angular-spinner/angular-spinner.min.js",
+     "resources/local/js/toastr.min.js"
+   ]
+}

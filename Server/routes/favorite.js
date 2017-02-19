@@ -3,7 +3,9 @@
  */
 var db  = require("mongo_schemas");
 var async = require("async");
+var checkP = require('check_permissions');
 module.exports.post = function(req,res){
+    if(checkP(req,res,'favorite_list'))return;
     var data = req.body;
     if(data.type == "add"){
         async.waterfall([
@@ -31,11 +33,10 @@ module.exports.post = function(req,res){
             });
         }
         function add_to_favorite(_id,callback){
-            var name = req.session.username;
-            db.users.findOne({username : name},{},function(err,info){
+            var id = req.session._id;
+            db.users.findOne({_id : id},{},function(err,info){
                 if(err){
-                    console.mongo(err);
-                    console.error(err);
+                    console.mongo('Error',err);
                     callback(err,null);
                 }
                 else{
@@ -74,11 +75,10 @@ module.exports.post = function(req,res){
             }
         });
         function find_user(callback){
-            var name = req.session.username;
+            var name = req.user.username;
             db.users.findOne({username : name},{_id:false}).lean().exec(function(err,_data){
                 if(err){
                     console.mongo(err);
-                    console.error(err);
                     callback(err,null);
                 }
                 else{
@@ -90,7 +90,6 @@ module.exports.post = function(req,res){
             db.phones.find({_id:{$in : favorite}},{}).lean().exec(function(err,data){
                 if(err){
                     console.mongo(err);
-                    console.error(err);
                     callback(err,null);
                 }
                 else{

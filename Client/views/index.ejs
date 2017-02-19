@@ -3,110 +3,166 @@
 <!--
     Designed and Developed by Danial Vafadar Rad|daniel.vafadar@gmail.com
 -->
-  <head>
+
+<head>
     <title>جستجوگر شماره تلفن ۱۱۸</title>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Danial Vafadar Rad|daniel.vafadar@gmail.com">
     <meta property="root" content="http://118.sadjad.ac.ir" />
+    <link href='../css/dep.css' rel='stylesheet' type='text/css'>
     <link href='../css/app.css' rel='stylesheet' type='text/css'>
-  </head>
-  <body ng-app="sadjad118" ng-controller="body_controller" ng-cloak>
-  <nav class="navbar navbar-default">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a id="main_page" class="navbar-brand" style="padding:10px" href="#/"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> <span style="margin-top:10px">جستجوگر شماره تلفن ۱۱۸</span></a>
-    </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-      <ul class="nav navbar-nav">
-          <%if(data.role == 0){%>
-          <li ng-class="loginActive"><a id="sign_in" href="#/login"><i class="icon-chevron-sign-up icon-large"></i>ورود</a></li>
-          <% }%>
-        <li ng-class="enrollActive"><a href="#/enroll"><span> ثبت نام</span></a></li>
-        <% if(data.role != 0){%>
-          <li ng-class="favoriteActive"><a  href="#/favorite">لیست مورد علاقه <span class="sr-only">(current)</span></a></li>
-          <%if(data.role == 2){%>
-          <li ng-class="addphoneActive"><a id="add_phone" href="#/add_phone">اضافه کردن شماره تلفن</a></li>
-          <li ng-class="usermanagementActive"><a id="add_phone" href="#/user_management">مدیریت کاربران</a></li>
-          <li ng-class="logsActive"><a  href="#/logs">لاگ های سرور</a></li>
-          <%}%>
-        <%}%>
-      </ul>
-        <%if(data.role != 0){%>
-        <ul class="nav navbar-nav navbar-left">
-            <li class="dropdown">
-                <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                    <span class="glyphicon glyphicon-user"></span> 
-                    <strong><%= data.name%></strong>
-                    <span class="glyphicon glyphicon-chevron-down"></span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right pull-left" >
-                    <li>
-                        <div class="navbar-login">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <p class="text-center">
-                                        <span class="glyphicon glyphicon-user icon-size"></span>
-                                    </p>
+</head>
+
+<body ng-app="sadjad118" ng-controller="body_controller">
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <span id="menu-toggle" style='top:18px;margin-right:5px;' class="navbar-brand toggle glyphicon glyphicon-align-justify  toggle pull-right" aria-hidden="true"></span>
+        </div>
+        <a href="#!/"><span style="margin-top:27px; margin-right:20px;"><img class='logo1' src='../images/logo1.png'></img></span></a>
+
+        <img id='logo' class=" pull-left" src="../images/logo.png">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+            <ul class="nav navbar-nav">
+
+            </ul>
+            <ul class="nav navbar-nav navbar-left" ng-show="user_session">
+                <li class="dropdown">
+                    <ul class="dropdown-menu dropdown-menu-right pull-left">
+                        <li>
+                            <div class="navbar-login">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p class="text-center">
+                                            <span class="glyphicon glyphicon-user icon-size"></span>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <div class="navbar-login navbar-login-session">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <p>
-                                        <a href="" ng-click="logout()" class="btn btn-danger btn-block">خروج</a>
-                                    </p>
+                        </li>
+                        <li>
+                            <div class="navbar-login navbar-login-session">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p>
+                                            <a href="" ng-click="logout()" class="btn btn-danger btn-block">خروج</a>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Sidebar -->
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <nav id="spy">
+                <ul class="sidebar-nav nav">
+                    <li ng-repeat="index in menu">
+                        <a ng-href="{{index.href}}" style='color:white' class='hvr-underline-from-center'>
+                            <i class="{{index.icon}}" aria-hidden="true" style='margin-left: 8px;'></i>
+                            <span ng-bind='index.value'></span>
+                        </a>
                     </li>
+
+                    <li>
+                        <a class='hvr-underline-from-center' style='color:white' href="" ng-click="logout()" ng-show="user_session"><i class="fa fa-sign-out" style='margin-left: 8px;' aria-hidden="true"></i>
+خروج</a>
+                    </li>
+
                 </ul>
-            </li>
-        </ul>
-        <%}%>
-    </div>
-  </nav>
-    <div class="col-md-9">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 id="content_header" class="panel-title" ng-class="header" >{{Header}}</h3>
+            </nav>
+        </div>
+        <div class="content">
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 id="content_header" class="panel-title" ng-class="header">
+                          <i class="{{menu_icon}}" color='black' aria-hidden="true"></i>
+                          <span ng-bind="Header"></span>
+                        </h3>
+                    </div>
+                    <div id="content_body" class="panel-body" ng-view ng-class="body">
+                    </div>
+                </div>
             </div>
-            <div id="content_body" class="panel-body" ng-view ng-class="body">
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+
+                        <h3 id="content_header" class="panel-title"><i class="fa fa-link" aria-hidden="true"></i> لینک های مفید</h3>
+                    </div>
+                    <div id="content_body" class="panel-body">
+                        <div ng-repeat='index in external_link'>
+                            <a ng-if="permissions.indexOf('external_link') != -1" href="" style="color:black" ng-click="deleteLink(index)"><span  style='margin-right:5px;
+                        position:absolute;
+                        margin-top: 3px;
+                        font-size: 18px;
+                        ' aria-hidden="true" >×</span></a>
+                            <a href="{{index.address}}" target="_blank" style='background-color:{{index.color}}; border: none;' class="btn btn-primary  btn-block" ng-bind='index.name'></a>
+                            </br>
+                        </div>
+                        <div style='text-align:center' ng-if="permissions.indexOf('external_link') != -1">
+                            <a href='' style='color:black;' data-toggle="modal" data-target="#add_link"><span class="glyphicon glyphicon-plus-sign add_link" aria-hidden="true"></span></a>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 id="content_header" class="panel-title">لینک های مفید</h3>
-            </div>
-            <div id="content_body" class="panel-body">
-                <a href="{{stu_url}}"  target="_blank" class="btn btn-primary  btn-block">سیستم دانشجویی</a>
-                <a href="{{sepehr_url}}" target="_blank" class="btn btn-info  btn-block">سیستم دانلود سپهر</a>
-                <a href="{{pooya_url}}"  target="_blank" class="btn btn-warning  btn-block">سامانه پویا</a>
+
+    <!-- Modal -->
+    <div class="modal fade" id="add_link" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button id='close' type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel"><i class="fa fa-external-link" aria-hidden="true"></i>
+ اضافه‌کردن لینک‌های مفید</h4>
+
+                </div>
+                <form role="form" method="POST" ng-submit="link_submit()">
+                    <div class="modal-body">
+                        <fieldset>
+                            <hr class="colorgraph">
+                            <div class="form-group">
+                                <label>عنوان لینک:</label>
+                                <input type="text" ng-model="link.name" class="form-control" placeholder="عنوان" required>
+                            </div>
+                            <div class="form-group">
+                                <label>آدرس لینک:</label>
+                                <input type="text" ng-model="link.address" dir='ltr' class="form-control" placeholder="آدرس لینک" required>
+                            </div>
+                            <div class="form-group">
+                                <label>رنگ:</label>
+                                <input type="color" ng-model="link.color" class="form-control">
+                            </div>
+                            <hr class="colorgraph">
+                        </fieldset>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-hdd-o" aria-hidden="true"></i> ذخیره کردن اطلاعات</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-  <nav class="footer">
-      <div class="container">
-          <div class="col-sm-6 ">
-              <p class="pull-right"><a href="{{computer_center}}"  target="_blank">مرکز کامپیوتر - دانشگاه صنعتی سجاد</a></p>
-          </div>
-          <div class="col-sm-6">
-              <p  class="pull-left">  نسخه <%=data.version%></p>
-          </div>
-      </div>
-  </nav>
-  </body>
-  <script type="application/javascript" src="../js/app.js"> </script>
+</body>
+<script type="application/javascript" src="../js/dep.js"></script>
+<script type="application/javascript" src="../js/app.js"></script>
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("active");
+        $("#menu-toggle").toggleClass("rotate")
+    });
+    $('a').trigger("mouseover");
+</script>
+
 </html>

@@ -1,0 +1,16 @@
+<div class="pull-left">
+    <ul class="nav nav-tabs">
+        <li role="presentation"><a href="" ng-click="error_fun()">Error Logs</a></li>
+        <li role="presentation"><a href="" ng-click="info_fun()">Info Logs</a></li>
+    </ul>
+</div>
+<table class='table'>
+    <thead>
+        <th>توضیحات</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat='index in view_logs' class='{{type}}'>
+            <td dir='ltr' ng-bind='index.log'></td>
+        </tr>
+    </tbody>
+</table>

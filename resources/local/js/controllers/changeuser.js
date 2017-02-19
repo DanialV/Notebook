@@ -1,21 +1,16 @@
-var changeuser = angular.module('changeuser',['ngRoute']);
+var changeuser = angular.module('changeuser',['ngRoute','http_engine']);
 changeuser.config(function($routeProvider){
     $routeProvider.when('/changeuser',{
-        templateUrl: 'changeuser',
-        controller : function($scope,$http){
+        templateUrl: 'views/changeuser.html',
+        controller : function($scope,http){
           $scope.HeaderName('تغییر اطلاعات کاربری');
           $scope.body = 'fade-handel';
           $scope.header = 'fade-handel';
-          $http({
-            url:'/changeuser',
-            data: {
-              type:"get"
-            },
-            method:'POST'
-          }).success(function(res){
-              $scope.user_data = res;
-          }).error(function(err){
-            toastr.error( "اشکال داخلی سرور","خطا");
+          http.get('/changeuser',{},function(err,data){
+              if(err){
+                return toastr.error( "اشکال داخلی سرور","خطا");
+              }
+              $scope.user_data = data;
           });
         }
 
