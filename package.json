@@ -24,6 +24,7 @@
     "gulp-size": "*",
     "gulp-uglify": "*",
     "gulp-watch": "*",
+    "json2csv": "^3.7.3",
     "mongoose": "^4.5.7",
     "morgan": "~1.7.0",
     "persianjs": "^0.3.0",

@@ -4,12 +4,10 @@ module.exports.get = function(req, res) {
     if (typeof req.user == 'undefined') {
         let data = [{
             'href': '#!/login/',
-            'class': 'loginActive',
             'value': 'ورود',
             'icon': 'fa fa-sign-in'
         }, {
             'href': '#!/enroll',
-            'class': 'enrollActive',
             'value': 'ثبت نام',
             'icon': 'fa fa-user-plus'
         }, ]
@@ -24,7 +22,6 @@ module.exports.get = function(req, res) {
         let permssions = req.user.permissions;
         var data = [{
             'href': '#!/enroll',
-            'class': 'enrollActive',
             'value': 'ثبت نام',
             'icon': 'fa fa-user-plus'
         }]
@@ -33,7 +30,6 @@ module.exports.get = function(req, res) {
             if (index == "favorite_list") {
                 data.push({
                     'href': '#!/favorite',
-                    'class': 'favoriteActive',
                     'value': 'لیست مورد علاقه',
                     'icon': 'fa fa-heart'
                 });
@@ -41,7 +37,6 @@ module.exports.get = function(req, res) {
             if (index == "add_phone") {
                 data.push({
                     'href': '#!/add_phone',
-                    'class': 'add_phoneActive',
                     'value': 'اضافه کردن شماره تلفن',
                     'icon': 'fa fa-phone-square'
                 });
@@ -50,7 +45,6 @@ module.exports.get = function(req, res) {
                 check_user_managment = index;
                 data.push({
                     'href': '#!/user_management',
-                    'class': 'usermanagmentActive',
                     'value': 'مدیریت کاربران',
                     'icon': 'fa fa-users'
                 });
@@ -58,9 +52,15 @@ module.exports.get = function(req, res) {
             if (index == "system_logs") {
                 data.push({
                     'href': '#!/logs',
-                    'class': 'logsActive',
                     'value': 'لاگ های سرور',
                     'icon': 'fa fa-cogs'
+                });
+            }
+            if (index == "db_export") {
+                data.push({
+                    'href': '/db_export',
+                    'value': 'خروجی اکسل تمام شماره‌تلفن‌ها',
+                    'icon': 'fa fa-file-excel-o'
                 });
             }
             callback()

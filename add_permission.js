@@ -1,13 +1,13 @@
 let mongoose = require("mongoose");
 let db = require('./Server/node_modules/mongo_schemas');
 let async = require('async')
-mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/118');
+mongoose.Promise = global.Promise;
+
 let database = mongoose.connection;
 
 database.on('error', function(err) {
     console.log('Error : Mongo connection error'.red);
-    //    console.log(err);
 });
 database.once('open', function() {});
 let permissions = [{
@@ -37,21 +37,29 @@ let permissions = [{
 }, {
     title: "مشاهده شماره تلفن",
     name: "phone_number"
+}, {
+    title: "خروجی اکسل تمام شماره تلفن ها",
+    name: "db_export"
 }]
-async.each(permissions, function(index, callback) {
-    let temp = new db.permissions(index)
-    temp.save(function(err) {
+db.permissions.remove({}, (err) => {
+    if (err) {
+        return console.log("Mongo Error");
+    }
+    async.each(permissions, function(index, callback) {
+        let temp = new db.permissions(index)
+        temp.save(function(err) {
+            if (err) {
+                callback(err)
+            } else {
+                callback()
+            }
+        });
+    }, function(err) {
         if (err) {
-            callback(err)
+            console.log(err)
         } else {
-            callback()
+            console.log("Done");
+            mongoose.connection.close()
         }
     });
-}, function(err) {
-    if (err) {
-        console.log(err)
-    } else {
-        console.log("Done")
-        mongoose.connection.close()
-    }
 });

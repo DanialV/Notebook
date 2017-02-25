@@ -256,13 +256,14 @@ h2,h3,h1,h5,h4{
     position: relative;
     overflow: hidden;
 }
+
 .rotate {
   -webkit-transform:rotate(90deg);
   -moz-transform:rotate(90deg);
   -o-transform:rotate(90deg);
   /* filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=1.5); */
   -ms-transform:rotate(90deg);
-  top:15px!important;
+  top:20px!important;
     transition: all .4s ease 0s;
 }
 .toggle{
@@ -459,10 +460,7 @@ h2,h3,h1,h5,h4{
   /*padding-right: 250px; */
 }
 
-#wrapper.active #sidebar-wrapper {
-  right: 250px;
-  transition: all .4s ease 0s;
-}
+
 
 #page-content-wrapper {
   width: 100%;

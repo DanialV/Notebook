@@ -12,6 +12,7 @@
     <meta name="author" content="Danial Vafadar Rad|daniel.vafadar@gmail.com">
     <meta property="root" content="http://118.sadjad.ac.ir" />
     <link href='../css/dep.css' rel='stylesheet' type='text/css'>
+
     <link href='../css/app.css' rel='stylesheet' type='text/css'>
 </head>
 
@@ -63,9 +64,9 @@
             <nav id="spy">
                 <ul class="sidebar-nav nav">
                     <li ng-repeat="index in menu">
-                        <a ng-href="{{index.href}}" style='color:white' class='hvr-underline-from-center'>
+                        <a ng-href="{{index.href}}" style='color:white;white-space: nowrap;' class='hvr-underline-from-center'>
                             <i class="{{index.icon}}" aria-hidden="true" style='margin-left: 8px;'></i>
-                            <span ng-bind='index.value'></span>
+                            <span ng-bind='index.value' style=""></span>
                         </a>
                     </li>
 
@@ -103,7 +104,7 @@
                         margin-top: 3px;
                         font-size: 18px;
                         ' aria-hidden="true" >×</span></a>
-                            <a href="{{index.address}}" target="_blank" style='background-color:{{index.color}}; border: none;' class="btn btn-primary  btn-block" ng-bind='index.name'></a>
+                            <a href="{{index.address}}" target="_blank" style='background-color:{{index.color}};border: none;' class="btn btn-primary  btn-block" ng-bind='index.name'></a>
                             </br>
                         </div>
                         <div style='text-align:center' ng-if="permissions.indexOf('external_link') != -1">

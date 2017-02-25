@@ -10,6 +10,7 @@ var get_routes = [
     'user_management',
     'external_link',
     'logs',
+    'db_export'
 ];
 var post_route = [
     'favorite',
